@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class BalloonMovement : MonoBehaviour
 {
     [SerializeField]
     private float speed = 8f;
