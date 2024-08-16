@@ -5,12 +5,12 @@ using UnityEngine;
 public class BalloonMovement : MonoBehaviour
 {
     [SerializeField]
-    private float speed = 8f;
-    private float horizontal;
-    [SerializeField]
-    private float jumpingPow = 16f;
+    private float speed = 6f;
 
-    private int balloonNumber = 0;
+    private float horizontal;
+    private float vertical;
+
+    public int balloonNumber = 0;
 
 
     [SerializeField]
@@ -26,27 +26,24 @@ public class BalloonMovement : MonoBehaviour
 
     private void Update()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        // jump
-        if(Input.GetButtonDown("Jump") && IsGrounded())
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPow);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q) && balloonNumber < 10)
-        {
-            Inflate();
-        }
-
-        if (Input.GetKeyDown(KeyCode.E) && balloonNumber > 0)
-        {
-            Deflate();
-        }
+        
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y + (balloonNumber * 0.2f));
+        horizontal = Input.GetAxisRaw("Horizontal");
+        vertical = Input.GetAxisRaw("Vertical");
+
+        if (vertical == 1 && balloonNumber < 100)
+        {
+            Inflate();
+        }
+
+        if (vertical == -1 && balloonNumber > 0)
+        {
+            Deflate();
+        }
+        rb.AddForce((horizontal * speed * Vector2.right) + (balloonNumber * 0.2f * Vector2.up));
     }
 
     private bool IsGrounded()
