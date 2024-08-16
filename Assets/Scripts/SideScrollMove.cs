@@ -29,12 +29,6 @@ public class SideScrollMove : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPow);
         }
-
-        // stay longer in air after jump
-        if (Input.GetButtonDown("Jump") && rb.velocity.y > 0f)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y);  
-        }
     }
 
     private void FixedUpdate()
