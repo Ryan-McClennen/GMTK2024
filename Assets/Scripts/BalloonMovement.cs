@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class BalloonMovement : MonoBehaviour
@@ -10,8 +12,9 @@ public class BalloonMovement : MonoBehaviour
     private float horizontal;
     private float vertical;
 
-    public int balloonNumber = 0;
-
+    public float balloonNumber = 0;
+    public int[] floatinessScale = {0, 25, 55, 70, 75, 85, 100, 110};
+    
 
     [SerializeField]
     private Rigidbody2D rb;
@@ -24,26 +27,25 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
 
-    private void Update()
-    {
-        
-    }
-
     private void FixedUpdate()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        if (vertical == 1 && balloonNumber < 100)
-        {
-            Inflate();
-        }
+        balloonNumber += Input.GetAxisRaw("Vertical") * 0.05f;
+        balloonNumber = Mathf.Clamp(balloonNumber, 0, floatinessScale.Length - 1);
 
-        if (vertical == -1 && balloonNumber > 0)
+        if(balloonNumber <= 0.25f) rb.gravityScale = 3.2f;
+        else rb.gravityScale = 1.2f;
+
+        if (!IsGrounded())
         {
-            Deflate();
+            rb.AddForce((horizontal * speed * Vector2.right) + (GetFloatiness() * 0.18f));
         }
-        rb.AddForce((horizontal * speed * Vector2.right) + (balloonNumber * 0.2f * Vector2.up));
+        else
+        {
+            rb.AddForce(GetFloatiness() * 0.2f);
+        }
     }
 
     private bool IsGrounded()
@@ -52,13 +54,14 @@ public class BalloonMovement : MonoBehaviour
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
     }
 
-    private void Inflate()
+    private Vector2 GetFloatiness()
     {
-        balloonNumber++;
-    }
-
-    private void Deflate()
-    {
-        balloonNumber--;
+        int lower = (int) balloonNumber;
+        int upper = Mathf.Min((int) balloonNumber + 1, floatinessScale.Length - 1);
+        float remainer = balloonNumber % 1;
+        Vector3 slerped = Vector3.Slerp(new Vector3(0, floatinessScale[lower], 0),
+                                        new Vector3(0, floatinessScale[upper], 0),
+                                        remainer);
+        return new Vector2(0, slerped.y);
     }
 }
