@@ -15,7 +15,7 @@ public class BalloonMovement : MonoBehaviour
     private float vertical;
 
     public float balloonNumber = 0;
-    public int[] floatinessScale = {0, 25, 55, 70, 75, 85, 100, 110};
+    public int[] floatinessScale = {-100, -75, -50, -25, 10, 22, 30, 35};
     
 
     [SerializeField]
@@ -48,9 +48,6 @@ public class BalloonMovement : MonoBehaviour
         balloonNumber += Input.GetAxisRaw("Vertical") * 0.05f;
         balloonNumber = Mathf.Clamp(balloonNumber, 0, floatinessScale.Length - 1);
 
-        if(balloonNumber <= 0.25f) rb.gravityScale = 3.2f;
-        else rb.gravityScale = 1.2f;
-
         if (!IsGrounded())
         {
             rb.AddForce((horizontal * speed * Vector2.right) + (GetFloatiness() * 0.18f));
@@ -59,6 +56,9 @@ public class BalloonMovement : MonoBehaviour
         {
             rb.AddForce(GetFloatiness() * 0.2f);
         }
+
+        if (Input.GetKey(KeyCode.LeftArrow)) transform.localScale = new Vector2(1f, 1f);
+        if (Input.GetKey(KeyCode.RightArrow)) transform.localScale = new Vector2(-1f, 1f);
     }
 
     public bool IsGrounded()

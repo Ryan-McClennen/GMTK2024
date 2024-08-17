@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerContoller : MonoBehaviour
@@ -31,17 +32,12 @@ public class PlayerContoller : MonoBehaviour
                 isChild = false;
             }
 
-            else if (Vector2.Distance(robot.transform.position, child.transform.position) < 0.5 && !isChild)
+            else if (Vector2.Distance(robot.transform.position, child.transform.position) < 1f && !isChild)
             {
                 balloonMove.SetAsPlayer();
                 robotMove.UnsetAsPlayer();
                 isChild = true;
             }
-        }
-
-        if (isChild)
-        {
-            robot.transform.position = child.transform.position + new Vector3(0.5f, 0.5f, 1f);
         }
     }
 }
