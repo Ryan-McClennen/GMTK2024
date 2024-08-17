@@ -14,17 +14,18 @@ public class DualGridTilemap : MonoBehaviour {
     };
 
     protected static Dictionary<Tuple<TileType, TileType, TileType, TileType>, Tile> neighbourTupleToTile;
+    protected static Dictionary<Tuple<TileType, TileType, TileType, TileType>, Tile> neighbourTupleToTileGrass;
 
     // Provide references to each tilemap in the inspector
     public Tilemap placeholderTilemap;
     public Tilemap displayTilemap;
+    public Tilemap displayTilemapTwo;
 
     // Provide the dirt and grass placeholder tiles in the inspector
     public Tile grassPlaceholderTile;
     public Tile dirtPlaceholderTile;
 
     // Provide the 16 tiles in the inspector
-    [SerializeField]
     public Tile[] tiles;
 
     void Start() {
@@ -50,6 +51,26 @@ public class DualGridTilemap : MonoBehaviour {
             {new (Dirt, Dirt, Dirt, Dirt), tiles[12]},
 
         };
+
+        neighbourTupleToTileGrass = new() {
+            {new (None, None, None, None), tiles[22]},
+            {new (Dirt, Dirt, Dirt, None), tiles[29]}, // OUTER_BOTTOM_RIGHT
+            {new (Dirt, Dirt, None, Dirt), tiles[16]}, // OUTER_BOTTOM_LEFT
+            {new (Dirt, None, Dirt, Dirt), tiles[24]}, // OUTER_TOP_RIGHT
+            {new (None, Dirt, Dirt, Dirt), tiles[31]}, // OUTER_TOP_LEFT
+            {new (Dirt, None, Dirt, None), tiles[17]}, // EDGE_RIGHT
+            {new (None, Dirt, None, Dirt), tiles[27]}, // EDGE_LEFT
+            {new (Dirt, Dirt, None, None), tiles[19]}, // EDGE_BOTTOM
+            {new (None, None, Dirt, Dirt), tiles[25]}, // EDGE_TOP
+            {new (Dirt, None, None, None), tiles[21]}, // INNER_BOTTOM_RIGHT
+            {new (None, Dirt, None, None), tiles[18]}, // INNER_BOTTOM_LEFT
+            {new (None, None, Dirt, None), tiles[26]}, // INNER_TOP_RIGHT
+            {new (None, None, None, Dirt), tiles[23]}, // INNER_TOP_LEFT
+            {new (Dirt, None, None, Dirt), tiles[30]}, // DUAL_UP_RIGHT
+            {new (None, Dirt, Dirt, None), tiles[20]}, // DUAL_DOWN_RIGHT
+            {new (Dirt, Dirt, Dirt, Dirt), tiles[28]},
+
+        };
         RefreshDisplayTilemap();
     }
 
@@ -67,7 +88,7 @@ public class DualGridTilemap : MonoBehaviour {
             return None;
     }
 
-    protected Tile calculateDisplayTile(Vector3Int coords) {
+    protected Tile calculateDisplayTile(Vector3Int coords, Dictionary<Tuple<TileType, TileType, TileType, TileType>, Tile> tileSet) {
         // 4 neighbours
         TileType topRight = getPlaceholderTileTypeAt(coords - NEIGHBOURS[0]);
         TileType topLeft = getPlaceholderTileTypeAt(coords - NEIGHBOURS[1]);
@@ -76,13 +97,14 @@ public class DualGridTilemap : MonoBehaviour {
 
         Tuple<TileType, TileType, TileType, TileType> neighbourTuple = new(topLeft, topRight, botLeft, botRight);
 
-        return neighbourTupleToTile[neighbourTuple];
+        return tileSet[neighbourTuple];
     }
 
     protected void setDisplayTile(Vector3Int pos) {
         for (int i = 0; i < NEIGHBOURS.Length; i++) {
             Vector3Int newPos = pos + NEIGHBOURS[i];
-            displayTilemap.SetTile(newPos, calculateDisplayTile(newPos));
+            displayTilemap.SetTile(newPos, calculateDisplayTile(newPos, neighbourTupleToTile));
+            displayTilemapTwo.SetTile(newPos, calculateDisplayTile(newPos, neighbourTupleToTileGrass));
         }
     }
 
