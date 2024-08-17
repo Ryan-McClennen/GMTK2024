@@ -424,7 +424,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 1
   m_AngularDrag: 0.05
-  m_GravityScale: 0.7
+  m_GravityScale: 1.2
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -515,11 +515,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 702322697}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 909d14e487b6b97478b49fe187363ab7, type: 3}
+  m_Script: {fileID: 11500000, guid: 31794e7fca172314799edb249f557780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 6
   balloonNumber: 0
+  floatinessScale: 0000000037000000460000004b00000055000000640000006e000000
   rb: {fileID: 702322699}
   groundCheck: {fileID: 1837167855}
   groundLayer:
