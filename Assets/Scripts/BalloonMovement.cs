@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.Collections;
 using UnityEngine;
 
 public class BalloonMovement : MonoBehaviour
@@ -36,10 +37,7 @@ public class BalloonMovement : MonoBehaviour
     private Transform balloon;
 
     [SerializeField]
-    SpriteRenderer balloonRenderer;
-
-    [SerializeField]
-    Sprite[] balloons;
+    SpriteRenderer[] balloons;
 
 
     [SerializeField]
@@ -59,11 +57,30 @@ public class BalloonMovement : MonoBehaviour
         balloonScale = (float) Math.Pow(1.1, balloonScale) + 0.25f;
 
         balloon.localScale = new Vector2(balloonScale, balloonScale);
-        balloon.localPosition = new Vector2(-0.15f, 2.25f + balloonRenderer.bounds.size.y / 2f);
+        balloon.localPosition = new Vector2(-0.15f, 2.25f + balloons[0].bounds.size.y / 2f);
 
-        if (balloonScale <= 0.71f) balloonRenderer.sprite = balloons[0];
-        else if (balloonScale <= 1.4f) balloonRenderer.sprite = balloons[1]; 
-        else balloonRenderer.sprite = balloons[2]; 
+        float smallTrans = 0;
+        float largeTrans = 0;
+        
+        if (balloonScale < 0.5)
+        {
+            smallTrans = 1;
+        }
+        else if (balloonScale < 1.2)
+        {
+            smallTrans = 1 - (balloonScale - 0.5f) / 0.7f;
+        }
+        else if (balloonScale < 3)
+        {
+            largeTrans = (balloonScale - 1.2f) / 1.8f;
+        }
+        else
+        {
+            largeTrans = 1;
+        }
+
+        balloons[0].color = new Color(1f, 1f, 1f, smallTrans);
+        balloons[1].color = new Color(1f, 1f, 1f, largeTrans);
 
         if (!isPlayer) return;
 
