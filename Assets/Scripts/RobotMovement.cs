@@ -35,7 +35,7 @@ public class RobotMovement : MonoBehaviour
         rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         // spawns circle to see if it overlaps with ground objects under player.
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);

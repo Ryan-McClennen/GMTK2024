@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class BalloonMovement : MonoBehaviour
 {
+    private bool isPlayer;
+
     [SerializeField]
     private float speed = 6f;
 
@@ -27,8 +29,46 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
 
+    [Header ("Player Switch Data")]
+    public GameObject backRobot;
+    public GameObject robot;
+    public Collider2D childCollider;
+
+    private void Start()
+    {
+        isPlayer = true;
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            if (IsGrounded() && isPlayer)
+            {
+                robot.transform.position = transform.position;
+                rb.velocity = Vector3.zero;
+                backRobot.SetActive(false);
+                robot.SetActive(true);
+                childCollider.isTrigger = true;
+                isPlayer = false;
+                rb.gravityScale = 0;
+            }
+
+            else if (Vector3.Distance(robot.transform.position, transform.position) < 0.5 && !isPlayer)
+            {
+                backRobot.SetActive(true);
+                robot.SetActive(false);
+                childCollider.isTrigger = false;
+                isPlayer = true;
+                rb.gravityScale = 1.2f;
+            }
+        }
+    }
+
     private void FixedUpdate()
     {
+        if (!isPlayer) return;
+
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
@@ -48,7 +88,7 @@ public class BalloonMovement : MonoBehaviour
         }
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         // spawns circle to see if it overlaps with ground objects under player.
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
