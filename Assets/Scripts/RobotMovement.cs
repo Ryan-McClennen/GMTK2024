@@ -81,7 +81,8 @@ public class RobotMovement : MonoBehaviour
             horizontal = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
 
-            
+            if (rb.velocity.x > 0) transform.localScale = new Vector2(-0.5f * transform.parent.localScale.x, 0.5f);
+            if (rb.velocity.x < 0) transform.localScale = new Vector2(0.5f * transform.parent.localScale.x, 0.5f);
         }
     }
 
@@ -107,11 +108,14 @@ public class RobotMovement : MonoBehaviour
         animator.ResetTrigger("Activate");
         animator.ResetTrigger("Stop");
         animator.ResetTrigger("Land");
+        animator.ResetTrigger("Start");
         animator.SetTrigger("Deactivate");
 
         isPlayer = false;
         robotCollider.isTrigger = true;
         rb.isKinematic = true;
         transform.position += Vector3.forward;
+
+        transform.localPosition = new Vector3(0.85f, 0.4f, 1f);
     }
 }
