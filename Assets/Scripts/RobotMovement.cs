@@ -117,6 +117,6 @@ public class RobotMovement : MonoBehaviour
         rb.isKinematic = true;
         transform.position += Vector3.forward;
 
-        transform.localPosition = new Vector3(1f, 0.5f, 1f);
+        transform.localPosition = new Vector3(0.85f, 0.4f, 1f);
     }
 }

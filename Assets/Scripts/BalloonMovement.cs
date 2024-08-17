@@ -39,6 +39,8 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField]
     SpriteRenderer[] balloons;
 
+    [SerializeField]
+    Collider2D robotHitbox;
 
     [SerializeField]
     private Animator animator;
@@ -124,6 +126,7 @@ public class BalloonMovement : MonoBehaviour
     {
         isPlayer = true;
         childCollider.isTrigger = false;
+        robotHitbox.isTrigger = false;
         rb.isKinematic = false;
         transform.position += Vector3.back;
     }
@@ -132,6 +135,7 @@ public class BalloonMovement : MonoBehaviour
     {
         isPlayer = false;
         childCollider.isTrigger = true;
+        robotHitbox.isTrigger = true;
         rb.isKinematic = true;
         transform.position += Vector3.forward;
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using UnityEngine;
 
 public class PlayerContoller : MonoBehaviour
@@ -14,11 +15,26 @@ public class PlayerContoller : MonoBehaviour
     public GameObject robot;
     public RobotMovement robotMove;
 
+    [Header ("Camera Data")]
+    [SerializeField]
+    private Transform balloon;
+
+    [SerializeField]
+    private Transform balloonFollow;
+
+    [SerializeField]
+    private CinemachineVirtualCamera vCam;
+
     private bool isChild;
+
+    private int MINSCREENSIZE = 10;
 
     public void Start()
     {
         isChild = true;
+        vCam = GameObject.Find ("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
+        vCam.Follow = balloonFollow;
+        vCam.m_Lens.OrthographicSize = MINSCREENSIZE;
     }
 
     private void Update()
@@ -29,6 +45,7 @@ public class PlayerContoller : MonoBehaviour
             {
                 balloonMove.UnsetAsPlayer();
                 robotMove.SetAsPlayer();
+                vCam.Follow = robot.transform;
                 isChild = false;
             }
 
@@ -36,8 +53,14 @@ public class PlayerContoller : MonoBehaviour
             {
                 balloonMove.SetAsPlayer();
                 robotMove.UnsetAsPlayer();
+                vCam.Follow = balloonFollow;
                 isChild = true;
             }
         }
+
+        float scale = balloon.transform.localScale.x;
+        balloonFollow.transform.localPosition = Vector2.down * (scale * 0.2f / 5.3f + 0.4f);
+        if (scale < 1.15f) vCam.m_Lens.OrthographicSize = MINSCREENSIZE;
+        else vCam.m_Lens.OrthographicSize = (scale - 1.15f) * 3f + MINSCREENSIZE;
     }
 }

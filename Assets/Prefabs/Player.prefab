@@ -206,6 +206,7 @@ GameObject:
   - component: {fileID: 3027561585934990616}
   - component: {fileID: 5453362296798639214}
   - component: {fileID: 4068159587897214652}
+  - component: {fileID: 7141629610225505445}
   - component: {fileID: 804224455351704331}
   m_Layer: 0
   m_Name: Child
@@ -372,7 +373,43 @@ MonoBehaviour:
   balloons:
   - {fileID: 6350961018821125468}
   - {fileID: 4313311541179870373}
+  robotHitbox: {fileID: 7141629610225505445}
   animator: {fileID: 804224455351704331}
+--- !u!70 &7141629610225505445
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 462985273628761991}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.75, y: 0.75}
+  m_Size: {x: 1, y: 1.4}
+  m_Direction: 0
 --- !u!95 &804224455351704331
 Animator:
   serializedVersion: 5
@@ -558,6 +595,9 @@ MonoBehaviour:
   balloonMove: {fileID: 4068159587897214652}
   robot: {fileID: 104400881255381931}
   robotMove: {fileID: 2593898327729196344}
+  balloon: {fileID: 2423624652794350364}
+  balloonFollow: {fileID: 1134253286345175558}
+  cameraFollow: {fileID: 0}
 --- !u!1 &3900684741402210871
 GameObject:
   m_ObjectHideFlags: 0
@@ -790,6 +830,7 @@ Transform:
   - {fileID: 9118053226053629026}
   - {fileID: 1612382011778212618}
   - {fileID: 2837022518209148491}
+  - {fileID: 1134253286345175558}
   m_Father: {fileID: 5800877565514589613}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!60 &667704494216880034
@@ -956,3 +997,34 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &8983868927854132791
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1134253286345175558}
+  m_Layer: 0
+  m_Name: Follow Spot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1134253286345175558
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8983868927854132791}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.15, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2423624652794350364}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
