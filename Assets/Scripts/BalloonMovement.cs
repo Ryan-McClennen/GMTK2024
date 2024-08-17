@@ -32,6 +32,9 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField]
     private Collider2D childCollider;
 
+    [SerializeField]
+    private Animator animator;
+
     private void Start()
     {
         isPlayer = true;
@@ -40,6 +43,8 @@ public class BalloonMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        animator.SetBool("HasRobot", isPlayer);
+
         if (!isPlayer) return;
 
         horizontal = Input.GetAxisRaw("Horizontal");
