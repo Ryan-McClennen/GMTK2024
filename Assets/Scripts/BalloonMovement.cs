@@ -44,7 +44,6 @@ public class BalloonMovement : MonoBehaviour
         }
         else
         {
-            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
             rb.AddForce(GetFloatiness() * 0.2f);
         }
     }
