@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class BalloonMovement : MonoBehaviour
@@ -10,8 +11,9 @@ public class BalloonMovement : MonoBehaviour
     private float horizontal;
     private float vertical;
 
-    public int balloonNumber = 0;
-
+    public int balloonNumber = -1;
+    public int floatinessScale = 0;
+    
 
     [SerializeField]
     private Rigidbody2D rb;
@@ -26,26 +28,38 @@ public class BalloonMovement : MonoBehaviour
 
     private void Update()
     {
-        
+        if ((Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W)) && balloonNumber < 5)
+        {
+            Debug.Log("Up: Balloon Level = " + (balloonNumber + 1));
+            Inflate();
+        }
+
+        if ((Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S)) && balloonNumber > -1)
+        {
+            Debug.Log("Down: Balloon Level = " + (balloonNumber - 1));
+            Deflate();
+        }
     }
 
     private void FixedUpdate()
     {
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
-
-        if (vertical == 1 && balloonNumber < 100)
+        if (!IsGrounded())
         {
-            Inflate();
+            rb.AddForce((horizontal * speed * Vector2.right) + (floatinessScale * 0.18f * Vector2.up));
         }
-
-        if (vertical == -1 && balloonNumber > 0)
+        else
         {
-            Deflate();
+            if(balloonNumber < 1)
+            {
+                rb.gravityScale = 3.2f;
+            }
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+            rb.AddForce(floatinessScale * 0.2f * Vector2.up);
         }
-        rb.AddForce((horizontal * speed * Vector2.right) + (balloonNumber * 0.2f * Vector2.up));
     }
-
+    // helloo
     private bool IsGrounded()
     {
         // spawns circle to see if it overlaps with ground objects under player.
@@ -55,10 +69,45 @@ public class BalloonMovement : MonoBehaviour
     private void Inflate()
     {
         balloonNumber++;
+        ChangeFloatiness();
     }
 
     private void Deflate()
     {
         balloonNumber--;
+        ChangeFloatiness();
+    }
+
+    private void ChangeFloatiness()
+    {
+        if (balloonNumber == -1)
+        {
+            floatinessScale = 0;
+        }
+        else if (balloonNumber == 0)
+        {
+            floatinessScale = 55;
+        }
+        else if(balloonNumber == 1)
+        {
+            floatinessScale = 70;
+            rb.gravityScale = 1.2f;
+        }
+        else if (balloonNumber == 2)
+        {
+            floatinessScale = 75;
+        }
+        else if (balloonNumber == 3)
+        {
+            floatinessScale = 85;
+        }
+        else if (balloonNumber == 4)
+        {
+            floatinessScale = 100;
+        }
+        else if (balloonNumber == 5)
+        {
+            floatinessScale = 110;
+        }
     }
 }
