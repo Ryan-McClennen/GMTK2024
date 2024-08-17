@@ -15,7 +15,7 @@ public class BalloonMovement : MonoBehaviour
     private float vertical;
 
     public float balloonNumber = 0;
-    public int[] floatinessScale = {-100, -75, -50, -25, 10, 22, 30, 35};
+    public int[] floatinessScale = {-80, -35, 5, 15, 23, 28, 32, 35};
     
 
     [SerializeField]
@@ -55,9 +55,12 @@ public class BalloonMovement : MonoBehaviour
     {
         animator.SetBool("HasRobot", isPlayer);
 
-        float balloonScale = (balloonNumber * 15 / 7 + 1) / 4;
+        float balloonScale = balloonNumber / 7 * 37f - 20f;
+        balloonScale = (float) Math.Pow(1.1, balloonScale) + 0.25f;
+
         balloon.localScale = new Vector2(balloonScale, balloonScale);
         balloon.localPosition = new Vector2(-0.15f, 2.25f + balloonRenderer.bounds.size.y / 2f);
+
         if (balloonScale <= 0.71f) balloonRenderer.sprite = balloons[0];
         else if (balloonScale <= 1.4f) balloonRenderer.sprite = balloons[1]; 
         else balloonRenderer.sprite = balloons[2]; 
@@ -67,7 +70,7 @@ public class BalloonMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        balloonNumber += Input.GetAxisRaw("Vertical") * 0.05f;
+        balloonNumber += vertical * 0.05f;
         balloonNumber = Mathf.Clamp(balloonNumber, 0, floatinessScale.Length - 1);
 
         if (!IsGrounded())
