@@ -29,41 +29,14 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
 
-    [Header ("Player Switch Data")]
-    public GameObject backRobot;
-    public GameObject robot;
-    public Collider2D childCollider;
+    [SerializeField]
+    private Collider2D childCollider;
 
     private void Start()
     {
         isPlayer = true;
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            if (IsGrounded() && isPlayer)
-            {
-                robot.transform.position = transform.position;
-                rb.velocity = Vector3.zero;
-                backRobot.SetActive(false);
-                robot.SetActive(true);
-                childCollider.isTrigger = true;
-                isPlayer = false;
-                rb.gravityScale = 0;
-            }
-
-            else if (Vector3.Distance(robot.transform.position, transform.position) < 0.5 && !isPlayer)
-            {
-                backRobot.SetActive(true);
-                robot.SetActive(false);
-                childCollider.isTrigger = false;
-                isPlayer = true;
-                rb.gravityScale = 1.2f;
-            }
-        }
-    }
 
     private void FixedUpdate()
     {
@@ -103,5 +76,21 @@ public class BalloonMovement : MonoBehaviour
                                         new Vector3(0, floatinessScale[upper], 0),
                                         remainer);
         return new Vector2(0, slerped.y);
+    }
+
+    public void SetAsPlayer()
+    {
+        isPlayer = true;
+        childCollider.isTrigger = false;
+        rb.isKinematic = false;
+        transform.position += Vector3.back;
+    }
+
+    public void UnsetAsPlayer()
+    {
+        isPlayer = false;
+        childCollider.isTrigger = true;
+        rb.isKinematic = true;
+        transform.position += Vector3.forward;
     }
 }

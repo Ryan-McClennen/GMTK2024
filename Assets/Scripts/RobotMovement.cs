@@ -21,9 +21,19 @@ public class RobotMovement : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
 
+    [SerializeField]
+    private Collider2D circleCollider;
+
+    private bool isPlayer;
+
+    private void Start()
+    {
+        UnsetAsPlayer();
+    }
+
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z) && IsGrounded())
+        if(Input.GetKeyDown(KeyCode.Z) && IsGrounded() && isPlayer)
         {
             rb.velocity += jumpingPow * Vector2.up;
         }
@@ -31,13 +41,32 @@ public class RobotMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        horizontal = Input.GetAxisRaw("Horizontal");
-        rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        if (isPlayer)
+        {
+            horizontal = Input.GetAxisRaw("Horizontal");
+            rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+        }
     }
 
     public bool IsGrounded()
     {
         // spawns circle to see if it overlaps with ground objects under player.
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+    }
+
+    public void SetAsPlayer()
+    {
+        isPlayer = true;
+        circleCollider.isTrigger = false;
+        rb.isKinematic = false;
+        transform.position += Vector3.back;
+    }
+
+    public void UnsetAsPlayer()
+    {
+        isPlayer = false;
+        circleCollider.isTrigger = true;
+        rb.isKinematic = true;
+        transform.position += Vector3.forward;
     }
 }
