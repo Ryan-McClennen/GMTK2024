@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class RobotMovement : MonoBehaviour
 {
+    private bool isPlayer;
+
+    private bool wasInAir = false;
+
     [SerializeField]
     private float speed = 8f;
     private float horizontal;
@@ -22,9 +26,10 @@ public class RobotMovement : MonoBehaviour
     private LayerMask groundLayer;
 
     [SerializeField]
-    private Collider2D circleCollider;
+    private Collider2D robotCollider;
 
-    private bool isPlayer;
+    [SerializeField]
+    private Animator animator;
 
     private void Start()
     {
@@ -33,11 +38,41 @@ public class RobotMovement : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Z) && IsGrounded() && isPlayer)
+
+        if (isPlayer)
         {
-            rb.velocity += jumpingPow * Vector2.up;
+            if (Input.GetKeyDown(KeyCode.Z) && IsGrounded())
+            {
+                animator.ResetTrigger("Land");
+                animator.SetTrigger("Jump");
+                rb.velocity += jumpingPow * Vector2.up;
+            }
+
+            else if (wasInAir && IsGrounded())
+            {
+                animator.ResetTrigger("Jump");
+                animator.ResetTrigger("Start");
+                animator.ResetTrigger("Stop");
+                animator.SetTrigger("Land");
+            }
+
+            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
+            {
+                animator.ResetTrigger("Stop");
+                animator.SetTrigger("Start");
+            }
+
+            else if (rb.velocity.magnitude == 0)
+            {
+                animator.ResetTrigger("Start");
+                animator.ResetTrigger("Jump");
+                animator.SetTrigger("Stop");
+            }
+
+            wasInAir = !IsGrounded();
         }
     }
+        
 
     private void FixedUpdate()
     {
@@ -45,6 +80,8 @@ public class RobotMovement : MonoBehaviour
         {
             horizontal = Input.GetAxisRaw("Horizontal");
             rb.velocity = new Vector2(horizontal * speed, rb.velocity.y);
+
+            
         }
     }
 
@@ -56,16 +93,24 @@ public class RobotMovement : MonoBehaviour
 
     public void SetAsPlayer()
     {
+        animator.ResetTrigger("Deactivate");
+        animator.SetTrigger("Activate");
+
         isPlayer = true;
-        circleCollider.isTrigger = false;
+        robotCollider.isTrigger = false;
         rb.isKinematic = false;
         transform.position += Vector3.back;
     }
 
     public void UnsetAsPlayer()
     {
+        animator.ResetTrigger("Activate");
+        animator.ResetTrigger("Stop");
+        animator.ResetTrigger("Land");
+        animator.SetTrigger("Deactivate");
+
         isPlayer = false;
-        circleCollider.isTrigger = true;
+        robotCollider.isTrigger = true;
         rb.isKinematic = true;
         transform.position += Vector3.forward;
     }
