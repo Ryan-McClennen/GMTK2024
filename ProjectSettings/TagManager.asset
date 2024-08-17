@@ -50,3 +50,6 @@ TagManager:
   - name: grass
     uniqueID: 2032154259
     locked: 0
+  - name: balloon
+    uniqueID: 466710657
+    locked: 0
