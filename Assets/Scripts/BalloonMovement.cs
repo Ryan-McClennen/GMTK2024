@@ -6,6 +6,8 @@ using UnityEngine;
 
 public class BalloonMovement : MonoBehaviour
 {
+    private bool isPlayer;
+
     [SerializeField]
     private float speed = 6f;
 
@@ -13,7 +15,7 @@ public class BalloonMovement : MonoBehaviour
     private float vertical;
 
     public float balloonNumber = 0;
-    public int[] floatinessScale = {0, 25, 55, 70, 75, 85, 100, 110};
+    public int[] floatinessScale = {-100, -75, -50, -25, 10, 22, 30, 35};
     
 
     [SerializeField]
@@ -27,16 +29,46 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField]
     private LayerMask groundLayer;
 
+    [SerializeField]
+    private Collider2D childCollider;
+
+    [SerializeField]
+    private Transform balloon;
+
+    [SerializeField]
+    SpriteRenderer balloonRenderer;
+
+    [SerializeField]
+    Sprite[] balloons;
+
+
+    [SerializeField]
+    private Animator animator;
+
+    private void Start()
+    {
+        isPlayer = true;
+    }
+
+
     private void FixedUpdate()
     {
+        animator.SetBool("HasRobot", isPlayer);
+
+        float balloonScale = (balloonNumber * 15 / 7 + 1) / 4;
+        balloon.localScale = new Vector2(balloonScale, balloonScale);
+        balloon.localPosition = new Vector2(-0.15f, 2.25f + balloonRenderer.bounds.size.y / 2f);
+        if (balloonScale <= 0.71f) balloonRenderer.sprite = balloons[0];
+        else if (balloonScale <= 1.4f) balloonRenderer.sprite = balloons[1]; 
+        else balloonRenderer.sprite = balloons[2]; 
+
+        if (!isPlayer) return;
+
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
         balloonNumber += Input.GetAxisRaw("Vertical") * 0.05f;
         balloonNumber = Mathf.Clamp(balloonNumber, 0, floatinessScale.Length - 1);
-
-        if(balloonNumber <= 0.25f) rb.gravityScale = 3.2f;
-        else rb.gravityScale = 1.2f;
 
         if (!IsGrounded())
         {
@@ -46,9 +78,12 @@ public class BalloonMovement : MonoBehaviour
         {
             rb.AddForce(GetFloatiness() * 0.2f);
         }
+
+        if (Input.GetKey(KeyCode.LeftArrow)) transform.localScale = new Vector2(1f, 1f);
+        if (Input.GetKey(KeyCode.RightArrow)) transform.localScale = new Vector2(-1f, 1f);
     }
 
-    private bool IsGrounded()
+    public bool IsGrounded()
     {
         // spawns circle to see if it overlaps with ground objects under player.
         return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
@@ -63,5 +98,21 @@ public class BalloonMovement : MonoBehaviour
                                         new Vector3(0, floatinessScale[upper], 0),
                                         remainer);
         return new Vector2(0, slerped.y);
+    }
+
+    public void SetAsPlayer()
+    {
+        isPlayer = true;
+        childCollider.isTrigger = false;
+        rb.isKinematic = false;
+        transform.position += Vector3.back;
+    }
+
+    public void UnsetAsPlayer()
+    {
+        isPlayer = false;
+        childCollider.isTrigger = true;
+        rb.isKinematic = true;
+        transform.position += Vector3.forward;
     }
 }
