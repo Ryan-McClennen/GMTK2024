@@ -41,9 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: grass
+  - name: brass
     uniqueID: 715722197
     locked: 0
   - name: dirt
     uniqueID: 2199888077
+    locked: 0
+  - name: grass
+    uniqueID: 2032154259
     locked: 0

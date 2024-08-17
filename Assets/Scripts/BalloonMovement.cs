@@ -32,6 +32,19 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField]
     private Collider2D childCollider;
 
+    [SerializeField]
+    private Transform balloon;
+
+    [SerializeField]
+    SpriteRenderer balloonRenderer;
+
+    [SerializeField]
+    Sprite[] balloons;
+
+
+    [SerializeField]
+    private Animator animator;
+
     private void Start()
     {
         isPlayer = true;
@@ -40,6 +53,15 @@ public class BalloonMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        animator.SetBool("HasRobot", isPlayer);
+
+        float balloonScale = (balloonNumber * 15 / 7 + 1) / 4;
+        balloon.localScale = new Vector2(balloonScale, balloonScale);
+        balloon.localPosition = new Vector2(-0.15f, 2.25f + balloonRenderer.bounds.size.y / 2f);
+        if (balloonScale <= 0.71f) balloonRenderer.sprite = balloons[0];
+        else if (balloonScale <= 1.4f) balloonRenderer.sprite = balloons[1]; 
+        else balloonRenderer.sprite = balloons[2]; 
+
         if (!isPlayer) return;
 
         horizontal = Input.GetAxisRaw("Horizontal");
