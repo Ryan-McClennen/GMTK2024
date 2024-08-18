@@ -13,6 +13,11 @@ public class DualGridTilemap : MonoBehaviour {
         new Vector3Int(1, 1, 0)
     };
 
+    [SerializeField]
+    public int horizontalRenderDistance;
+    [SerializeField]
+    public int verticalRenderDistance;
+
     protected static Dictionary<Tuple<TileType, TileType, TileType, TileType>, Tile> neighbourTupleToTile;
     protected static Dictionary<Tuple<TileType, TileType, TileType, TileType>, Tile> neighbourTupleToTileGrass;
     protected static Dictionary<Tuple<TileType, TileType, TileType, TileType>, Tile> neighbourTupleToTileBrass;
@@ -149,8 +154,8 @@ public class DualGridTilemap : MonoBehaviour {
 
     // The tiles on the display tilemap will recalculate themselves based on the placeholder tilemap
     public void RefreshDisplayTilemap() {
-        for (int i = -50; i < 50; i++) {
-            for (int j = -50; j < 50; j++) {
+        for (int i = (horizontalRenderDistance * -1); i < horizontalRenderDistance; i++) {
+            for (int j = (verticalRenderDistance * -1); j < verticalRenderDistance; j++) {
                 setDisplayTile(new Vector3Int(i, j, 0));
             }
         }
