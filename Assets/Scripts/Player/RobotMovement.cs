@@ -23,7 +23,7 @@ public class RobotMovement : MonoBehaviour
 
     // layer type to identify which objects are ground
     [SerializeField]
-    private LayerMask groundLayer;
+    private LayerMask[] groundLayers;
 
     [SerializeField]
     private Collider2D robotCollider;
@@ -92,7 +92,11 @@ public class RobotMovement : MonoBehaviour
     public bool IsGrounded()
     {
         // spawns circle to see if it overlaps with ground objects under player.
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        foreach (LayerMask layer in groundLayers)
+        {
+            if (Physics2D.OverlapCircle(groundCheck.position, 0.2f, layer)) return true;
+        }
+        return false;;
     }
 
     public void SetAsPlayer()
@@ -104,6 +108,7 @@ public class RobotMovement : MonoBehaviour
         robotCollider.isTrigger = false;
         rb.isKinematic = false;
         render.sortingOrder = 1;
+        tag = "Player";
     }
 
     public void UnsetAsPlayer()
@@ -121,5 +126,6 @@ public class RobotMovement : MonoBehaviour
         render.sortingOrder = 0;
 
         transform.localPosition = new Vector3(0.85f, 0.4f, 1f);
+        tag = "Untagged";
     }
 }

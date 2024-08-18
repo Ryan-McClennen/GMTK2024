@@ -28,7 +28,7 @@ public class BalloonMovement : MonoBehaviour
 
     // layer type to identify which objects are ground
     [SerializeField]
-    private LayerMask groundLayer;
+    private LayerMask[] groundLayers;
 
     [SerializeField]
     private Collider2D childCollider;
@@ -38,9 +38,6 @@ public class BalloonMovement : MonoBehaviour
 
     [SerializeField]
     SpriteRenderer[] balloons;
-
-    [SerializeField]
-    Collider2D robotHitbox;
 
     [SerializeField]
     private Animator animator;
@@ -111,7 +108,11 @@ public class BalloonMovement : MonoBehaviour
     public bool IsGrounded()
     {
         // spawns circle to see if it overlaps with ground objects under player.
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        foreach (LayerMask layer in groundLayers)
+        {
+            if (Physics2D.OverlapCircle(groundCheck.position, 0.2f, layer)) return true;
+        }
+        return false;;
     }
 
     private Vector2 GetFloatiness()
@@ -129,17 +130,17 @@ public class BalloonMovement : MonoBehaviour
     {
         isPlayer = true;
         childCollider.isTrigger = false;
-        robotHitbox.isTrigger = false;
         rb.isKinematic = false;
         render.sortingOrder = 1;
+        tag = "Player";
     }
 
     public void UnsetAsPlayer()
     {
         isPlayer = false;
         childCollider.isTrigger = true;
-        robotHitbox.isTrigger = true;
         rb.isKinematic = true;
         render.sortingOrder = 0;
+        tag = "Untagged";
     }
 }

@@ -105,7 +105,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 7
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: e41ee02ba4c9d7c4ba155ee5344a6925, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -167,9 +167,11 @@ MonoBehaviour:
   jumpingPow: 25
   rb: {fileID: 6600605903806815627}
   groundCheck: {fileID: 5533753019086732577}
-  groundLayer:
-    serializedVersion: 2
+  groundLayers:
+  - serializedVersion: 2
     m_Bits: 8
+  - serializedVersion: 2
+    m_Bits: 256
   robotCollider: {fileID: 430940028141790007}
   animator: {fileID: 8834790926417854274}
   render: {fileID: 3295083344458903912}
@@ -207,7 +209,6 @@ GameObject:
   - component: {fileID: 3027561585934990616}
   - component: {fileID: 6597095461973724948}
   - component: {fileID: 4068159587897214652}
-  - component: {fileID: 7141629610225505445}
   - component: {fileID: 804224455351704331}
   m_Layer: 0
   m_Name: Child
@@ -358,7 +359,11 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.5625, y: 1.25}
+    - - {x: 0.5816117, y: -0.15860087}
+      - {x: 1.1999311, y: -0.13748866}
+      - {x: 1.1921413, y: -0.031642914}
+      - {x: 1.118712, y: 1.2392383}
+      - {x: 0.5625, y: 1.25}
       - {x: 0.035717428, y: 1.2223499}
       - {x: -0.14790097, y: 0.94074816}
       - {x: -0.12314044, y: 0.67446876}
@@ -377,7 +382,7 @@ PolygonCollider2D:
       - {x: 0.4824333, y: -0.92016476}
       - {x: 0.88220394, y: -0.9206082}
       - {x: 1.0472329, y: -0.7422364}
-      - {x: 0.61693275, y: -0.030252457}
+      - {x: 0.71085465, y: -0.20244253}
   m_UseDelaunayMesh: 0
 --- !u!114 &4068159587897214652
 MonoBehaviour:
@@ -396,52 +401,18 @@ MonoBehaviour:
   floatinessScale: b0ffffffddffffff050000000f000000160000001b0000002000000023000000
   rb: {fileID: 3027561585934990616}
   groundCheck: {fileID: 4359509534224512152}
-  groundLayer:
-    serializedVersion: 2
+  groundLayers:
+  - serializedVersion: 2
     m_Bits: 8
+  - serializedVersion: 2
+    m_Bits: 256
   childCollider: {fileID: 6597095461973724948}
   balloon: {fileID: 2423624652794350364}
   balloons:
   - {fileID: 6350961018821125468}
   - {fileID: 4313311541179870373}
-  robotHitbox: {fileID: 7141629610225505445}
   animator: {fileID: 804224455351704331}
   render: {fileID: 3917837182723283011}
---- !u!70 &7141629610225505445
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 462985273628761991}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.75, y: 0.75}
-  m_Size: {x: 1, y: 1.4}
-  m_Direction: 0
 --- !u!95 &804224455351704331
 Animator:
   serializedVersion: 5
@@ -590,7 +561,7 @@ GameObject:
   - component: {fileID: 2152374082652840367}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
