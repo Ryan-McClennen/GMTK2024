@@ -21,17 +21,20 @@ public class DualGridTilemap : MonoBehaviour {
     protected static Dictionary<Tuple<TileType, TileType, TileType, TileType>, Tile> neighbourTupleToTile;
     protected static Dictionary<Tuple<TileType, TileType, TileType, TileType>, Tile> neighbourTupleToTileGrass;
     protected static Dictionary<Tuple<TileType, TileType, TileType, TileType>, Tile> neighbourTupleToTileBrass;
+    protected static Dictionary<Tuple<TileType, TileType, TileType, TileType>, Tile> neighbourTupleToTileSpike;
 
     // Provide references to each tilemap in the inspector
     public Tilemap placeholderTilemap;
     public Tilemap displayTilemap;
     public Tilemap displayTilemapTwo;
     public Tilemap displayTilemapThree;
+    public Tilemap displayTilemapFour;
 
     // Provide the dirt and grass placeholder tiles in the inspector
     public Tile grassPlaceholderTile;
     public Tile dirtPlaceholderTile;
     public Tile brassPlaceholderTile;
+    public Tile spikePlaceholderTile;
 
     // Provide the 16 tiles in the inspector
     public Tile[] tiles;
@@ -100,6 +103,26 @@ public class DualGridTilemap : MonoBehaviour {
 
         };
 
+        neighbourTupleToTileSpike = new() {
+            {new (None, None, None, None), tiles[54]},
+            {new (Spike, Spike, Spike, None), tiles[61]}, // OUTER_BOTTOM_RIGHT
+            {new (Spike, Spike, None, Spike), tiles[48]}, // OUTER_BOTTOM_LEFT
+            {new (Spike, None, Spike, Spike), tiles[56]}, // OUTER_TOP_RIGHT
+            {new (None, Spike, Spike, Spike), tiles[63]}, // OUTER_TOP_LEFT
+            {new (Spike, None, Spike, None), tiles[49]}, // EDGE_RIGHT
+            {new (None, Spike, None, Spike), tiles[59]}, // EDGE_LEFT
+            {new (Spike, Spike, None, None), tiles[51]}, // EDGE_BOTTOM
+            {new (None, None, Spike, Spike), tiles[57]}, // EDGE_TOP
+            {new (Spike, None, None, None), tiles[53]}, // INNER_BOTTOM_RIGHT
+            {new (None, Spike, None, None), tiles[50]}, // INNER_BOTTOM_LEFT
+            {new (None, None, Spike, None), tiles[58]}, // INNER_TOP_RIGHT
+            {new (None, None, None, Spike), tiles[55]}, // INNER_TOP_LEFT
+            {new (Spike, None, None, Spike), tiles[62]}, // DUAL_UP_RIGHT
+            {new (None, Spike, Spike, None), tiles[52]}, // DUAL_DOWN_RIGHT
+            {new (Spike, Spike, Spike, Spike), tiles[60]},
+
+        };
+
         RefreshDisplayTilemap();
     }
 
@@ -109,7 +132,7 @@ public class DualGridTilemap : MonoBehaviour {
     }
 
     private TileType getPlaceholderTileTypeAt(Vector3Int coords, String tileSetName) {
-        if (tileSetName != "Brass")
+        if (tileSetName != "Brass" && tileSetName != "Spike")
         {
             if (placeholderTilemap.GetTile(coords) == grassPlaceholderTile)
                 return Grass;
@@ -118,11 +141,22 @@ public class DualGridTilemap : MonoBehaviour {
             else
                 return None;
         }
-        else
+        else if(tileSetName == "Brass")
         {
             if(placeholderTilemap.GetTile(coords) == brassPlaceholderTile)
             {
                 return Brass;
+            }
+            else
+            {
+                return None;
+            }
+        }
+        else
+        {
+            if (placeholderTilemap.GetTile(coords) == spikePlaceholderTile)
+            {
+                return Spike;
             }
             else
             {
@@ -149,6 +183,7 @@ public class DualGridTilemap : MonoBehaviour {
             displayTilemap.SetTile(newPos, calculateDisplayTile(newPos, neighbourTupleToTile, "Dirt"));
             displayTilemapTwo.SetTile(newPos, calculateDisplayTile(newPos, neighbourTupleToTileGrass, "Grass"));
             displayTilemapThree.SetTile(newPos, calculateDisplayTile(newPos, neighbourTupleToTileBrass, "Brass"));
+            displayTilemapFour.SetTile(newPos, calculateDisplayTile(newPos, neighbourTupleToTileSpike, "Spike"));
         }
     }
 
@@ -161,10 +196,11 @@ public class DualGridTilemap : MonoBehaviour {
         }
     }
 }
-//hello
+
 public enum TileType {
     None,
     Grass,
     Dirt,
-    Brass
+    Brass,
+    Spike
 }

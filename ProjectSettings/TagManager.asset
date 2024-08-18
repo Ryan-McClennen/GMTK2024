@@ -47,6 +47,9 @@ TagManager:
   - name: Obstacles
     uniqueID: 1937831683
     locked: 0
+  - name: Spikes
+    uniqueID: 870315217
+    locked: 0
   - name: Brass
     uniqueID: 715722197
     locked: 0
