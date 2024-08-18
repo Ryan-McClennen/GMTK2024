@@ -10,9 +10,6 @@ public class BalloonMovement : MonoBehaviour
     private bool isPlayer;
 
     [SerializeField]
-    private Collider2D[] balloonRestraintColliders;
-
-    [SerializeField]
     private Collider2D leftSideGlove;
 
     [SerializeField]
@@ -104,21 +101,14 @@ public class BalloonMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        bool leftTouching = false;
-        bool rightTouching = false;
-        bool topTouching = false;
-        bool bottomTouching = false;
+        bool leftTouching = false, rightTouching = false, topTouching = false, bottomTouching = false;
 
-        foreach (var collider in balloonRestraintColliders)
+        foreach (LayerMask layer in groundLayers)
         {
-            if (leftSideGlove.IsTouching(collider))
-                leftTouching = true;
-            if (rightSideGlove.IsTouching(collider))
-                rightTouching = true;
-            if (topSideGlove.IsTouching(collider))
-                topTouching = true;
-            if (bottomSideGlove.IsTouching(collider))
-                bottomTouching = true;
+            leftTouching |= leftSideGlove.IsTouchingLayers();
+            rightTouching |= rightSideGlove.IsTouchingLayers();
+            topTouching |= topSideGlove.IsTouchingLayers();
+            bottomTouching |= bottomSideGlove.IsTouchingLayers();
         }
 
         bool isEnclosed = false;
@@ -154,7 +144,7 @@ public class BalloonMovement : MonoBehaviour
         {
             if (Physics2D.OverlapCircle(groundCheck.position, 0.2f, layer)) return true;
         }
-        return false;;
+        return false;
     }
 
     private Vector2 GetFloatiness()
