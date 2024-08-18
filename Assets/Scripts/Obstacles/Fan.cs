@@ -20,12 +20,18 @@ public class Fan : Obstacle
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    private ParticleSystem air;
+
     private void Start()
     {
         playerRB = GameObject.Find("Child").GetComponent<Rigidbody2D>();
         isActive = true;
         animator.SetBool("isActive", true);
         animator.SetFloat("speed", windForceMultiplier / 2);
+        ParticleSystem.MainModule mainModule = air.main;
+        mainModule.startSpeed = windForceMultiplier * 4;
+        mainModule.startLifetime = blowArea.bounds.size.x / mainModule.startSpeed.constant;
     }
 
     private void Update()
