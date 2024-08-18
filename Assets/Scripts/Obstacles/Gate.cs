@@ -24,12 +24,20 @@ public class Gate : Obstacle
 
     public override void Activate()
     {
+<<<<<<< Updated upstream
         goal = openPos;
+=======
+        goal = start + closedPos;
+>>>>>>> Stashed changes
     }
 
     public override void Deactivate()
     {
+<<<<<<< Updated upstream
         goal = closedPos;
+=======
+        goal = start + openPos;
+>>>>>>> Stashed changes
     }
 
     private void FixedUpdate()
