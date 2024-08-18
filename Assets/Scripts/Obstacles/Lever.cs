@@ -10,7 +10,12 @@ public class Lever : MonoBehaviour
     private Obstacle obstacle;
     
     [SerializeField]
-    private SpriteRenderer render;
+    private Animator animator;
+
+    private void Start()
+    {
+        animator.SetBool("isActive", true);
+    }
 
     private void Update()
     {
@@ -24,12 +29,12 @@ public class Lever : MonoBehaviour
                     if (!obstacle.isActive)
                     {
                         obstacle.Activate();
-                        render.color = Color.green;
+                        animator.SetBool("isActive", true);
                     }
                     else
                     {
                         obstacle.Deactivate();
-                        render.color = Color.red;
+                        animator.SetBool("isActive", false);
                     }
 
                     obstacle.isActive = !obstacle.isActive;

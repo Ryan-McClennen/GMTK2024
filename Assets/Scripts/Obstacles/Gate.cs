@@ -16,20 +16,20 @@ public class Gate : Obstacle
 
     private void Start()
     {
-        transform.position = openPos;
-        goal = openPos;
-        speed = Vector3.Distance(openPos, closedPos) / 50 / moveTime;
+        transform.position = closedPos;
+        goal = closedPos;
+        speed = Vector3.Distance(closedPos, openPos) / 50 / moveTime;
         isActive = false;
     }
 
     public override void Activate()
     {
-        goal = closedPos;
+        goal = openPos;
     }
 
     public override void Deactivate()
     {
-        goal = openPos;
+        goal = closedPos;
     }
 
     private void FixedUpdate()
