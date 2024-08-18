@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6866189274140596460}
   - component: {fileID: 3405907457581028573}
   - component: {fileID: 140917794812453654}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Birdy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
