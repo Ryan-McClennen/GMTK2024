@@ -5029,6 +5029,7 @@ MonoBehaviour:
   playerRB: {fileID: 0}
   windForceMultiplier: 3
   animator: {fileID: 1865750304637055854}
+  air: {fileID: 4701486751150576179}
 --- !u!95 &1865750304637055854
 Animator:
   serializedVersion: 5
