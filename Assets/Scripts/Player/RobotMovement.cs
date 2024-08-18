@@ -6,8 +6,6 @@ public class RobotMovement : MonoBehaviour
 {
     private bool isPlayer;
 
-    private bool wasInAir = false;
-
     [SerializeField]
     private float speed = 8f;
     private float horizontal;
@@ -41,38 +39,18 @@ public class RobotMovement : MonoBehaviour
 
     private void Update()
     {
+        animator.SetBool("isPlayer", isPlayer);
+        animator.SetBool("isGrounded", IsGrounded());
+        animator.SetBool("isMoving", Input.GetAxisRaw("Horizontal") != 0);
 
+        if (IsGrounded()) animator.ResetTrigger("Jump");
         if (isPlayer)
         {
             if (Input.GetKeyDown(KeyCode.Z) && IsGrounded())
             {
-                animator.ResetTrigger("Land");
                 animator.SetTrigger("Jump");
                 rb.velocity += jumpingPow * Vector2.up;
             }
-
-            else if (wasInAir && IsGrounded())
-            {
-                animator.ResetTrigger("Jump");
-                animator.ResetTrigger("Start");
-                animator.ResetTrigger("Stop");
-                animator.SetTrigger("Land");
-            }
-
-            else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-            {
-                animator.ResetTrigger("Stop");
-                animator.SetTrigger("Start");
-            }
-
-            else if (rb.velocity.magnitude == 0)
-            {
-                animator.ResetTrigger("Start");
-                animator.ResetTrigger("Jump");
-                animator.SetTrigger("Stop");
-            }
-
-            wasInAir = !IsGrounded();
         }
     }
         
@@ -101,9 +79,6 @@ public class RobotMovement : MonoBehaviour
 
     public void SetAsPlayer()
     {
-        animator.ResetTrigger("Deactivate");
-        animator.SetTrigger("Activate");
-
         isPlayer = true;
         robotCollider.isTrigger = false;
         rb.isKinematic = false;
@@ -113,12 +88,6 @@ public class RobotMovement : MonoBehaviour
 
     public void UnsetAsPlayer()
     {
-        animator.ResetTrigger("Activate");
-        animator.ResetTrigger("Stop");
-        animator.ResetTrigger("Land");
-        animator.ResetTrigger("Start");
-        animator.SetTrigger("Deactivate");
-
         isPlayer = false;
         robotCollider.isTrigger = true;
         rb.velocity = Vector3.zero;
