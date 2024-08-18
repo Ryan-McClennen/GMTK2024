@@ -105,10 +105,10 @@ public class BalloonMovement : MonoBehaviour
 
         foreach (LayerMask layer in groundLayers)
         {
-            leftTouching |= leftSideGlove.IsTouchingLayers();
-            rightTouching |= rightSideGlove.IsTouchingLayers();
-            topTouching |= topSideGlove.IsTouchingLayers();
-            bottomTouching |= bottomSideGlove.IsTouchingLayers();
+            leftTouching |= leftSideGlove.IsTouchingLayers(layer);
+            rightTouching |= rightSideGlove.IsTouchingLayers(layer);
+            topTouching |= topSideGlove.IsTouchingLayers(layer);
+            bottomTouching |= bottomSideGlove.IsTouchingLayers(layer);
         }
 
         bool isEnclosed = false;
