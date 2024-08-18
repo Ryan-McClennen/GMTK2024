@@ -31,6 +31,8 @@ public class PlayerContoller : MonoBehaviour
 
     public void Start()
     {
+        GameObject start = GameObject.Find("PlayerStart");
+        transform.position = start.transform.position;
         isChild = true;
         vCam = GameObject.Find ("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
         vCam.Follow = balloonFollow;

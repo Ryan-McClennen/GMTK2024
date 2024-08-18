@@ -41,15 +41,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: brass
+  - name: Ambient
+    uniqueID: 219582035
+    locked: 0
+  - name: Obstacles
+    uniqueID: 1937831683
+    locked: 0
+  - name: Brass
     uniqueID: 715722197
     locked: 0
-  - name: dirt
+  - name: Dirt
     uniqueID: 2199888077
     locked: 0
-  - name: grass
+  - name: Grass
     uniqueID: 2032154259
     locked: 0
-  - name: balloon
+  - name: Player
+    uniqueID: 2015619689
+    locked: 0
+  - name: Balloon
     uniqueID: 466710657
     locked: 0

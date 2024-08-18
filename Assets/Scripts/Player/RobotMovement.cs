@@ -31,6 +31,9 @@ public class RobotMovement : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    SpriteRenderer render;
+
     private void Start()
     {
         UnsetAsPlayer();
@@ -100,7 +103,7 @@ public class RobotMovement : MonoBehaviour
         isPlayer = true;
         robotCollider.isTrigger = false;
         rb.isKinematic = false;
-        transform.position += Vector3.back;
+        render.sortingOrder = 1;
     }
 
     public void UnsetAsPlayer()
@@ -115,7 +118,7 @@ public class RobotMovement : MonoBehaviour
         robotCollider.isTrigger = true;
         rb.velocity = Vector3.zero;
         rb.isKinematic = true;
-        transform.position += Vector3.forward;
+        render.sortingOrder = 0;
 
         transform.localPosition = new Vector3(0.85f, 0.4f, 1f);
     }
