@@ -123,14 +123,8 @@ public class BalloonMovement : MonoBehaviour
 
         bool isEnclosed = false;
 
-        if (leftTouching && rightTouching)
+        if ((leftTouching && rightTouching) || (bottomTouching && topTouching))
         {
-            Debug.Log("Inflation Blocked top/bottom");
-            isEnclosed = true;
-        }
-        else if (topTouching && bottomTouching)
-        {
-            Debug.Log("Inflation Blocked left/right");
             isEnclosed = true;
         }
 
