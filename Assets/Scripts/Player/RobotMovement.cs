@@ -96,7 +96,7 @@ public class RobotMovement : MonoBehaviour
         {
             if (Physics2D.OverlapCircle(groundCheck.position, 0.2f, layer)) return true;
         }
-        return false;;
+        return false;
     }
 
     public void SetAsPlayer()
