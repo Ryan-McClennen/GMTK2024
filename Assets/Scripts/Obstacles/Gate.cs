@@ -27,12 +27,12 @@ public class Gate : Obstacle
 
     public override void Activate()
     {
-        goal = openPos;
+        goal = start + closedPos;
     }
 
     public override void Deactivate()
     {
-        goal = closedPos;
+        goal = start + openPos;
     }
 
     private void FixedUpdate()
