@@ -33,8 +33,6 @@ public class Lever : MonoBehaviour
                     }
 
                     obstacle.isActive = !obstacle.isActive;
-
-                    print("Interacted with: " + collider.name);
                 }
             }
         }
