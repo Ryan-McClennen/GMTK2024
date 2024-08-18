@@ -10,6 +10,21 @@ public class BalloonMovement : MonoBehaviour
     private bool isPlayer;
 
     [SerializeField]
+    private Collider2D[] balloonRestraintColliders;
+
+    [SerializeField]
+    private Collider2D leftSideGlove;
+
+    [SerializeField]
+    private Collider2D rightSideGlove;
+
+    [SerializeField]
+    private Collider2D topSideGlove;
+
+    [SerializeField]
+    private Collider2D bottomSideGlove;
+
+    [SerializeField]
     private float speed = 6f;
 
     private float horizontal;
@@ -89,8 +104,41 @@ public class BalloonMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        balloonNumber += vertical * 0.05f;
-        balloonNumber = Mathf.Clamp(balloonNumber, 0, floatinessScale.Length - 1);
+        bool leftTouching = false;
+        bool rightTouching = false;
+        bool topTouching = false;
+        bool bottomTouching = false;
+
+        foreach (var collider in balloonRestraintColliders)
+        {
+            if (leftSideGlove.IsTouching(collider))
+                leftTouching = true;
+            if (rightSideGlove.IsTouching(collider))
+                rightTouching = true;
+            if (topSideGlove.IsTouching(collider))
+                topTouching = true;
+            if (bottomSideGlove.IsTouching(collider))
+                bottomTouching = true;
+        }
+
+        bool isEnclosed = false;
+
+        if (leftTouching && rightTouching)
+        {
+            Debug.Log("Inflation Blocked top/bottom");
+            isEnclosed = true;
+        }
+        else if (topTouching && bottomTouching)
+        {
+            Debug.Log("Inflation Blocked left/right");
+            isEnclosed = true;
+        }
+
+        if (!isEnclosed || vertical != 1)
+        {
+            balloonNumber += vertical * 0.05f;
+            balloonNumber = Mathf.Clamp(balloonNumber, 0, floatinessScale.Length - 1);
+        }
 
         if (!IsGrounded())
         {
