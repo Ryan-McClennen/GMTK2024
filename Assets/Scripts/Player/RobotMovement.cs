@@ -84,6 +84,8 @@ public class RobotMovement : MonoBehaviour
         rb.isKinematic = false;
         render.sortingOrder = 1;
         tag = "Player";
+
+        animator.ResetTrigger("Deactivate");
     }
 
     public void UnsetAsPlayer()
@@ -96,5 +98,7 @@ public class RobotMovement : MonoBehaviour
 
         transform.localPosition = new Vector3(0.85f, 0.4f, 1f);
         tag = "Untagged";
+
+        animator.SetTrigger("Deactivate");
     }
 }
