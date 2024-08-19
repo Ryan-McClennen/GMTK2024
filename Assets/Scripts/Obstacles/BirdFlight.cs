@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class BirdFlight : MonoBehaviour
@@ -7,9 +8,16 @@ public class BirdFlight : MonoBehaviour
     [SerializeField]
     private int speed;
     [SerializeField]
-    Transform destination;
+    Vector3 destination;
     [SerializeField]
     private float waitTime = 2f;
+
+    [SerializeField]
+    private Collider2D hitbox;
+
+    [SerializeField]
+    private LayerMask layer;
+
     private bool ableToFly = true;
 
     private Vector3 pos1;
@@ -18,7 +26,7 @@ public class BirdFlight : MonoBehaviour
     {
         StartCoroutine(RandomWait(Random.Range(0f, 3f)));
         pos1 = transform.position;
-        pos2 = destination.position;
+        pos2 = destination;
     }
     // Update is called once per frame
     void Update()
@@ -34,10 +42,13 @@ public class BirdFlight : MonoBehaviour
             }
             
         }
+
+        if (hitbox.IsTouchingLayers(layer))
+            GameObject.Find("Player").GetComponent<PlayerContoller>().CommitDie();
     }
     IEnumerator Wait(float time)
     {
-        Debug.Log("Waiting");
+        transform.localScale = new Vector3(-transform.localScale.x, 0.75f, 1f);
         yield return new WaitForSeconds(time);
         Vector2 temp = pos2;
         pos2 = pos1;
