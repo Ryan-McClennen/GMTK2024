@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 7389677096278272352}
   - component: {fileID: 4837363106480131357}
   - component: {fileID: 2744359468961270638}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: InflateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 8139182587576522470}
   - component: {fileID: 342039980748860585}
   - component: {fileID: 1070264098652966045}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: DeflateButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
