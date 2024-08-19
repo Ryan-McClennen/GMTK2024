@@ -7,9 +7,6 @@ using UnityEngine;
 
 public class BoxEnlargement : MonoBehaviour
 {
-    public GameObject onButton;
-    public Collider2D onButtonCollider;
-    public Collider2D robotCollider;
     [SerializeField]
     private float boxSizeNumber;
     [SerializeField]
@@ -19,37 +16,36 @@ public class BoxEnlargement : MonoBehaviour
     [SerializeField]
     public float logMult;
 
-    [SerializeField]
-    private float shownBoxScale;
-    // Start is called before the first frame update
-    void Start()
-    {
-        onButton = GameObject.Find("On Button");
-        onButtonCollider = onButton.GetComponent<Collider2D>();
-        robotCollider = GameObject.Find("Robot").GetComponent<Collider2D>();
-    }
+    public bool isGrowing;
+    public bool isShrinking;
 
     private void FixedUpdate()
     {
         float boxScale = boxSizeNumber;
-        boxScale = (float)(Math.Log(boxScale, logNum) * logMult) + 1f;
-
-        if (boxScale == 0)
-            Debug.Log("Hit zero");
-        shownBoxScale = boxScale;
-
+        if (boxScale > 4)
+            boxScale = (float)(Math.Log(boxScale - 2.4f, logNum) * logMult) + 2.4f;
+        else
+            boxScale = (float)Math.Pow(1.7, boxScale - 1.7f) + 1f;
 
         transform.localScale = new Vector2(boxScale, boxScale);
 
-        if (robotCollider.IsTouching(onButtonCollider))
+        float goal = 4f;
+
+        if (isGrowing && !isShrinking) goal = 10f;
+        if (isShrinking  && !isGrowing) goal = 1f;
+
+        if (!Mathf.Approximately(boxSizeNumber, goal))
         {
-            boxSizeNumber += (1) * 0.05f;
-            boxSizeNumber = Mathf.Clamp(boxSizeNumber, 1f, boxSizeNumberCap);
-        }
-        else
-        {
-            boxSizeNumber += (-1) * 0.05f;
-            boxSizeNumber = Mathf.Clamp(boxSizeNumber, 1f, boxSizeNumberCap);
+            if (boxSizeNumber < goal)
+            {
+                boxSizeNumber += 0.05f;
+                boxSizeNumber = Mathf.Clamp(boxSizeNumber, 1f, boxSizeNumberCap);
+            }
+            if (boxSizeNumber > goal)
+            {
+                boxSizeNumber += -0.05f;
+                boxSizeNumber = Mathf.Clamp(boxSizeNumber, 1f, boxSizeNumberCap);
+            }
         }
     }
 }
