@@ -1023,7 +1023,7 @@ GameObject:
   - component: {fileID: 4349106701881225093}
   - component: {fileID: 1852045887224543492}
   - component: {fileID: 1877878254050184721}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Robot
   m_TagString: Player
   m_Icon: {fileID: 0}
