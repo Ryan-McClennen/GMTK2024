@@ -111,12 +111,7 @@ public class BalloonMovement : MonoBehaviour
             bottomTouching |= bottomSideGlove.IsTouchingLayers(layer);
         }
 
-        bool isEnclosed = false;
-
-        if ((leftTouching && rightTouching) || (bottomTouching && topTouching))
-        {
-            isEnclosed = true;
-        }
+        bool isEnclosed = ((leftTouching && rightTouching) || (bottomTouching && topTouching)) && balloonNumber > 3;
 
         if (!isEnclosed || vertical != 1)
         {
