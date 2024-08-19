@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf41b8c7ae2da3e4ba6fa637e708e6ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obstacle: {fileID: 0}
+  obstacle: {fileID: 7737591763583179474, guid: e6aa23f536921094e8c5fca25464b907, type: 3}
   animator: {fileID: 8169314369444660112}
 --- !u!95 &8169314369444660112
 Animator:
