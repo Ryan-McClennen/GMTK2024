@@ -22,6 +22,9 @@ public class BalloonMovement : MonoBehaviour
     private Collider2D bottomSideGlove;
 
     [SerializeField]
+    private Collider2D bottomSideGloveTwo;
+
+    [SerializeField]
     private float speed = 6f;
 
     private float horizontal;
@@ -101,7 +104,7 @@ public class BalloonMovement : MonoBehaviour
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
 
-        bool leftTouching = false, rightTouching = false, topTouching = false, bottomTouching = false;
+        bool leftTouching = false, rightTouching = false, topTouching = false, bottomTouching = false, bottomTouchingTwo = false;
 
         foreach (LayerMask layer in groundLayers)
         {
@@ -109,9 +112,10 @@ public class BalloonMovement : MonoBehaviour
             rightTouching |= rightSideGlove.IsTouchingLayers(layer);
             topTouching |= topSideGlove.IsTouchingLayers(layer);
             bottomTouching |= bottomSideGlove.IsTouchingLayers(layer);
+            bottomTouchingTwo |= bottomSideGloveTwo.IsTouchingLayers(layer);
         }
 
-        bool isEnclosed = ((leftTouching && rightTouching) || (bottomTouching && topTouching)) && balloonNumber > 3;
+        bool isEnclosed = ((leftTouching && rightTouching) || (bottomTouching && topTouching) || (bottomTouchingTwo && balloonNumber > 4.2)) && balloonNumber > 3;
 
         if (!isEnclosed || vertical != 1)
         {
