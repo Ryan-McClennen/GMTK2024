@@ -62,6 +62,11 @@ public class BalloonMovement : MonoBehaviour
         isPlayer = true;
     }
 
+    private void Update()
+    {
+        if (transform.position.y + 1.25 > 148 || transform.position.y - 1.25 < -20)
+            GameObject.Find("Player").GetComponent<PlayerContoller>().CommitDie();
+    }
 
     private void FixedUpdate()
     {
