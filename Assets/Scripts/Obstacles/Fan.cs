@@ -45,10 +45,14 @@ public class Fan : Obstacle
     public override void Activate()
     {
         animator.SetBool("isActive", true);
+        ParticleSystem.EmissionModule emission = air.emission;
+        emission.enabled = true;
     }
 
     public override void Deactivate()
     {
         animator.SetBool("isActive", false);
+        ParticleSystem.EmissionModule emission = air.emission;
+        emission.enabled = false;
     }
 }

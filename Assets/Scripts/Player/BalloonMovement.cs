@@ -65,6 +65,11 @@ public class BalloonMovement : MonoBehaviour
         isPlayer = true;
     }
 
+    private void Update()
+    {
+        if (transform.position.y + 1.25 > 148 || transform.position.y - 1.25 < -20)
+            GameObject.Find("Player").GetComponent<PlayerContoller>().CommitDie();
+    }
 
     private void FixedUpdate()
     {
@@ -77,19 +82,26 @@ public class BalloonMovement : MonoBehaviour
         balloon.localPosition = new Vector2(-0.15f, 2.25f + balloons[0].bounds.size.y / 2f);
 
         float smallTrans = 0;
+        float medTrans = 0;
         float largeTrans = 0;
         
-        if (balloonScale < 0.5)
+        if (balloonScale < 0.25)
         {
             smallTrans = 1;
         }
-        else if (balloonScale < 1.2)
+        else if (balloonScale < 1.25)
         {
-            smallTrans = 1 - (balloonScale - 0.5f) / 0.7f;
+            smallTrans = Mathf.Pow(1.25f - balloonScale, 0.5f);
+            medTrans = Mathf.Pow(balloonScale - 0.25f, 0.5f);
         }
-        else if (balloonScale < 3)
+        else if (balloonScale <  2.5)
         {
-            largeTrans = (balloonScale - 1.2f) / 1.8f;
+            medTrans = 1;
+        }
+        else if (balloonScale < 3.5)
+        {
+            medTrans = Mathf.Pow(3.5f - balloonScale, 0.5f);
+            largeTrans = Mathf.Pow(balloonScale - 2.5f, 0.5f);
         }
         else
         {
@@ -97,7 +109,8 @@ public class BalloonMovement : MonoBehaviour
         }
 
         balloons[0].color = new Color(1f, 1f, 1f, smallTrans);
-        balloons[1].color = new Color(1f, 1f, 1f, largeTrans);
+        balloons[1].color = new Color(1f, 1f, 1f, medTrans);
+        balloons[2].color = new Color(1f, 1f, 1f, largeTrans);
 
         if (!isPlayer) return;
 

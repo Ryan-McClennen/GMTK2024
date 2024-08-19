@@ -10,6 +10,9 @@ public class Flamethrower : Obstacle
     private Collider2D flameArea;
 
     [SerializeField]
+    private Collider2D hotAir;
+
+    [SerializeField]
     public LayerMask childLayer;
 
     [SerializeField]
@@ -18,8 +21,12 @@ public class Flamethrower : Obstacle
     [SerializeField]
     private ParticleSystem flame;
 
+    [SerializeField]
+    public Rigidbody2D playerRB;
+
     private void Start()
     {
+        playerRB = GameObject.Find("Child").GetComponent<Rigidbody2D>();
         isActive = true;
         animator.SetBool("isActive", true);
         ParticleSystem.MainModule mainModule = flame.main;
@@ -31,6 +38,10 @@ public class Flamethrower : Obstacle
         if (isActive && flameArea.IsTouchingLayers(childLayer))
         {
             GameObject.Find("Player").GetComponent<PlayerContoller>().CommitDie();
+        }
+        if (isActive && hotAir.IsTouchingLayers(childLayer))
+        {
+            playerRB.AddForce(Vector2.up * 0.2f);
         }
     }
 
