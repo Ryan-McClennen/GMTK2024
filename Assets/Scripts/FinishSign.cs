@@ -22,7 +22,6 @@ public class FinishSign : MonoBehaviour
 
     IEnumerator Wait(float time)
     {
-        Debug.Log("Waiting");
         yield return new WaitForSeconds(time);
         sceneChanger.SceneChangeCurtain();
     }

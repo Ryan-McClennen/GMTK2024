@@ -15,8 +15,23 @@ public class InflateButton : MonoBehaviour
     [SerializeField]
     private Collider2D hitbox;
 
+    [SerializeField]
+    SpriteRenderer render;
+
+    [SerializeField]
+    Sprite[] buttons;
+
     void FixedUpdate()
     {
-        box.isGrowing = hitbox.IsTouchingLayers(interactLayer);
+        if (hitbox.IsTouchingLayers(interactLayer))
+        {
+            box.isGrowing = true;
+            render.sprite = buttons[1];
+        }
+        else
+        {
+            box.isGrowing = false;
+            render.sprite = buttons[0];
+        }
     }
 }

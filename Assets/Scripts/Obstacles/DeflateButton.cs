@@ -15,8 +15,23 @@ public class DeflateButton : MonoBehaviour
     [SerializeField]
     private Collider2D hitbox;
 
+    [SerializeField]
+    SpriteRenderer render;
+
+    [SerializeField]
+    Sprite[] buttons;
+
     void Update()
     {
-        box.isShrinking = hitbox.IsTouchingLayers(interactLayer);
+        if (hitbox.IsTouchingLayers(interactLayer))
+        {
+            box.isShrinking = true;
+            render.sprite = buttons[1];
+        }
+        else
+        {
+            box.isShrinking = false;
+            render.sprite = buttons[0];
+        }
     }
 }

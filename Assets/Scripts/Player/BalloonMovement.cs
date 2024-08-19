@@ -85,14 +85,18 @@ public class BalloonMovement : MonoBehaviour
         float medTrans = 0;
         float largeTrans = 0;
         
-        if (balloonScale < 0.25)
+        if (balloonScale < 0.36)
         {
             smallTrans = 1;
         }
-        else if (balloonScale < 1.25)
+        else if (balloonScale < 1)
         {
-            smallTrans = Mathf.Pow(1.25f - balloonScale, 0.5f);
-            medTrans = Mathf.Pow(balloonScale - 0.25f, 0.5f);
+            if (balloonScale > 0.5)
+                smallTrans = Mathf.Pow((1f - balloonScale) * 2, 0.5f);
+            else
+                smallTrans = 1;
+
+            medTrans = Mathf.Pow(balloonScale, 0.5f);
         }
         else if (balloonScale <  2.5)
         {
@@ -100,7 +104,7 @@ public class BalloonMovement : MonoBehaviour
         }
         else if (balloonScale < 3.5)
         {
-            medTrans = Mathf.Pow(3.5f - balloonScale, 0.5f);
+            medTrans = 1; //Mathf.Pow(3.5f - balloonScale, 0.5f);
             largeTrans = Mathf.Pow(balloonScale - 2.5f, 0.5f);
         }
         else

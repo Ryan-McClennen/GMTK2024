@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1937831683
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: bb0dc23e6a3fdbd46b73ad2f77155759, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -155,7 +155,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1937831683
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: efa0724840c678f45941405f153f8efc, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -389,9 +389,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1937831683
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1715107945, guid: 0e55777a106264f45a6b875bdc31d339, type: 3}
+  m_Sprite: {fileID: -1281805228, guid: e9374c2ca2ddcc64396028548cc365d9, type: 3}
   m_Color: {r: 0.88814014, g: 0.9336408, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -464,6 +464,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1792
   hitbox: {fileID: 4837363106480131357}
+  render: {fileID: 7389677096278272352}
+  buttons:
+  - {fileID: -1281805228, guid: e9374c2ca2ddcc64396028548cc365d9, type: 3}
+  - {fileID: 32259927, guid: e9374c2ca2ddcc64396028548cc365d9, type: 3}
 --- !u!1 &4244127424486103536
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +655,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1937831683
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 58dcdaa932b134245a708646e95f1a08, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -738,9 +742,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1937831683
-  m_SortingLayer: 2
+  m_SortingLayer: 5
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1715107945, guid: 0e55777a106264f45a6b875bdc31d339, type: 3}
+  m_Sprite: {fileID: -739631209, guid: 15efad4ad951fc841948575e44880e72, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -813,6 +817,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1792
   hitbox: {fileID: 342039980748860585}
+  render: {fileID: 8139182587576522470}
+  buttons:
+  - {fileID: -739631209, guid: 15efad4ad951fc841948575e44880e72, type: 3}
+  - {fileID: 111881573, guid: 15efad4ad951fc841948575e44880e72, type: 3}
 --- !u!1 &8160231609846268603
 GameObject:
   m_ObjectHideFlags: 0
