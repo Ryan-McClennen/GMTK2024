@@ -28,7 +28,7 @@ public class BalloonMovement : MonoBehaviour
     private float vertical;
 
     public float balloonNumber = 0;
-    public int[] floatinessScale = {-80, -35, 5, 15, 23, 28, 32, 35};
+    public int[] floatinessScale;
     
 
     [SerializeField]
@@ -67,8 +67,8 @@ public class BalloonMovement : MonoBehaviour
     {
         animator.SetBool("HasRobot", isPlayer);
 
-        float balloonScale = balloonNumber / 7 * 37f - 20f;
-        balloonScale = (float) Math.Pow(1.1, balloonScale) + 0.25f;
+        float balloonScale = balloonNumber / 7 * 22f - 8f;
+        balloonScale = (float) Math.Pow(1.1, balloonScale) - 0.1f;
 
         balloon.localScale = new Vector2(balloonScale, balloonScale);
         balloon.localPosition = new Vector2(-0.15f, 2.25f + balloons[0].bounds.size.y / 2f);
@@ -152,7 +152,7 @@ public class BalloonMovement : MonoBehaviour
         int lower = (int) balloonNumber;
         int upper = Mathf.Min((int) balloonNumber + 1, floatinessScale.Length - 1);
         float remainer = balloonNumber % 1;
-        Vector3 slerped = Vector3.Slerp(new Vector3(0, floatinessScale[lower], 0),
+        Vector3 slerped = Vector3.Lerp(new Vector3(0, floatinessScale[lower], 0),
                                         new Vector3(0, floatinessScale[upper], 0),
                                         remainer);
         return new Vector2(0, slerped.y);

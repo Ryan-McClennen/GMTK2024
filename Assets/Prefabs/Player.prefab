@@ -975,7 +975,7 @@ MonoBehaviour:
   bottomSideGlove: {fileID: 5269327174842583342}
   speed: 6
   balloonNumber: 0
-  floatinessScale: b0ffffffddffffff050000000f000000160000001b0000002000000023000000
+  floatinessScale: b0ffffffddfffffffbffffff050000000f000000160000001c0000002000000023000000
   rb: {fileID: 4919900120147634079}
   groundCheck: {fileID: 1879689163311445553}
   groundLayers:
