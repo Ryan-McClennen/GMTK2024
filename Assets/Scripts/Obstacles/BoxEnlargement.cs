@@ -16,16 +16,20 @@ public class BoxEnlargement : MonoBehaviour
     [SerializeField]
     public float logMult;
 
+    [SerializeField]
+    public SpriteRenderer[] boxes;
+
+    [SerializeField]
+    private Rigidbody2D rb;
+
+    private float massMultiplier =  0.8f;
+
     public bool isGrowing;
     public bool isShrinking;
 
     private void FixedUpdate()
     {
-        float boxScale = boxSizeNumber;
-        if (boxScale > 4)
-            boxScale = (float)(Math.Log(boxScale - 2.4f, logNum) * logMult) + 2.4f;
-        else
-            boxScale = (float)Math.Pow(1.7, boxScale - 1.7f) + 1f;
+        float boxScale = MathF.Atan(boxSizeNumber - 4.5f) * 3.4f + 5.25f;
 
         transform.localScale = new Vector2(boxScale, boxScale);
 
@@ -47,5 +51,38 @@ public class BoxEnlargement : MonoBehaviour
                 boxSizeNumber = Mathf.Clamp(boxSizeNumber, 1f, boxSizeNumberCap);
             }
         }
+
+        float smallTrans = 0;
+        float medTrans = 0;
+        float largeTrans = 0;
+        
+        if (boxScale < 1.5)
+        {
+            smallTrans = 1;
+        }
+        else if (boxScale < 2.5)
+        {
+            smallTrans = Mathf.Pow(2.5f - boxScale, 0.5f);
+            medTrans = Mathf.Pow(boxScale - 1.5f, 0.5f);
+        }
+        else if (boxScale <  5.5)
+        {
+            medTrans = 1;
+        }
+        else if (boxScale < 6.5)
+        {
+            medTrans = Mathf.Pow(6.5f - boxScale, 0.5f);
+            largeTrans = Mathf.Pow(boxScale - 5.5f, 0.5f);
+        }
+        else
+        {
+            largeTrans = 1;
+        }
+
+        boxes[0].color = new Color(1f, 1f, 1f, smallTrans);
+        boxes[1].color = new Color(1f, 1f, 1f, medTrans);
+        boxes[2].color = new Color(1f, 1f, 1f, largeTrans);
+
+        rb.mass = transform.localScale.x * transform.localScale.y * massMultiplier;
     }
 }
