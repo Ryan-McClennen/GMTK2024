@@ -180,10 +180,32 @@ public class DualGridTilemap : MonoBehaviour {
     protected void setDisplayTile(Vector3Int pos) {
         for (int i = 0; i < NEIGHBOURS.Length; i++) {
             Vector3Int newPos = pos + NEIGHBOURS[i];
-            displayTilemap.SetTile(newPos, calculateDisplayTile(newPos, neighbourTupleToTile, "Dirt"));
-            displayTilemapTwo.SetTile(newPos, calculateDisplayTile(newPos, neighbourTupleToTileGrass, "Grass"));
-            displayTilemapThree.SetTile(newPos, calculateDisplayTile(newPos, neighbourTupleToTileBrass, "Brass"));
-            displayTilemapFour.SetTile(newPos, calculateDisplayTile(newPos, neighbourTupleToTileSpike, "Spike"));
+
+            Tile tileToSet;
+            Tuple<TileType, TileType, TileType, TileType> airTuple = new(None, None, None, None);
+
+            tileToSet = calculateDisplayTile(newPos, neighbourTupleToTile, "Dirt");
+            if (tileToSet != neighbourTupleToTile[airTuple]){
+                displayTilemap.SetTile(newPos, tileToSet);
+            }
+
+            tileToSet = calculateDisplayTile(newPos, neighbourTupleToTileGrass, "Grass");
+            if (tileToSet != neighbourTupleToTileGrass[airTuple])
+            {
+                displayTilemapTwo.SetTile(newPos, tileToSet);
+            }
+
+            tileToSet = calculateDisplayTile(newPos, neighbourTupleToTileBrass, "Brass");
+            if (tileToSet != neighbourTupleToTileBrass[airTuple])
+            {
+                displayTilemapThree.SetTile(newPos, tileToSet);
+            }
+
+            tileToSet = calculateDisplayTile(newPos, neighbourTupleToTileSpike, "Spike");
+            if (tileToSet != neighbourTupleToTileSpike[airTuple])
+            {
+                displayTilemapFour.SetTile(newPos, tileToSet);
+            }
         }
     }
 
