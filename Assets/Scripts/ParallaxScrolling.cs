@@ -10,12 +10,16 @@ public class ParallaxScrolling : MonoBehaviour
     [SerializeField]
     private int offSet;
 
+    [SerializeField]
+    private int WIDTH;
+
+    [SerializeField]
+    private int TELEPORTCHECK;
+
     private Camera mainCam;
 
     private float startX;
-
-    private int WIDTH = 48;
-    private int TELEPORTCHECK = 72;
+    
 
     void Start()
     {
