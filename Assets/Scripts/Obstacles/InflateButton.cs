@@ -21,17 +21,22 @@ public class InflateButton : MonoBehaviour
     [SerializeField]
     Sprite[] buttons;
 
+    [SerializeField]
+    GameObject buttonLight;
+
     void FixedUpdate()
     {
         if (hitbox.IsTouchingLayers(interactLayer))
         {
             box.isGrowing = true;
             render.sprite = buttons[1];
+            buttonLight.SetActive(true);
         }
         else
         {
             box.isGrowing = false;
             render.sprite = buttons[0];
+            buttonLight.SetActive(false);
         }
     }
 }

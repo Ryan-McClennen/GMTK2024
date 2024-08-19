@@ -60,10 +60,10 @@ public class PlayerContoller : MonoBehaviour
             }
         }
 
-        float scale = balloon.transform.localScale.x;
-        balloonFollow.transform.localPosition = Vector2.down * (scale * 0.2f / 5.3f + 0.4f);
-        if (scale < 1.15f) vCam.m_Lens.OrthographicSize = MINSCREENSIZE;
-        else vCam.m_Lens.OrthographicSize = (scale - 1.15f) * 3f + MINSCREENSIZE;
+            float scale = balloon.transform.localScale.x;
+            balloonFollow.transform.localPosition = Vector2.down * (scale * 0.2f / 5.3f + 0.4f);
+            if (scale < 1.15f) vCam.m_Lens.OrthographicSize = MINSCREENSIZE;
+            else vCam.m_Lens.OrthographicSize = (scale - 1.15f) * 3f + MINSCREENSIZE;
     }
 
     public void CommitDie()

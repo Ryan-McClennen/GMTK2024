@@ -468,6 +468,7 @@ MonoBehaviour:
   buttons:
   - {fileID: -1281805228, guid: e9374c2ca2ddcc64396028548cc365d9, type: 3}
   - {fileID: 32259927, guid: e9374c2ca2ddcc64396028548cc365d9, type: 3}
+  buttonLight: {fileID: 8160231609846268603}
 --- !u!1 &4244127424486103536
 GameObject:
   m_ObjectHideFlags: 0
@@ -821,6 +822,7 @@ MonoBehaviour:
   buttons:
   - {fileID: -739631209, guid: 15efad4ad951fc841948575e44880e72, type: 3}
   - {fileID: 111881573, guid: 15efad4ad951fc841948575e44880e72, type: 3}
+  buttonLight: {fileID: 4995611848876997883}
 --- !u!1 &8160231609846268603
 GameObject:
   m_ObjectHideFlags: 0
