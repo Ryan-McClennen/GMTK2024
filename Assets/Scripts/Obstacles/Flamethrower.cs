@@ -30,8 +30,7 @@ public class Flamethrower : Obstacle
     {
         if (isActive && flameArea.IsTouchingLayers(childLayer))
         {
-            // KILL THE CHILD
-            print("CHILD DEAD!");
+            GameObject.Find("Player").GetComponent<PlayerContoller>().CommitDie();
         }
     }
 

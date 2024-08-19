@@ -164,7 +164,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.5, y: 0}
@@ -196,7 +196,7 @@ MonoBehaviour:
   flameArea: {fileID: 6231426726636490393}
   childLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1536
   animator: {fileID: 8120184507852785536}
   flame: {fileID: 36709911910125798}
 --- !u!95 &8120184507852785536

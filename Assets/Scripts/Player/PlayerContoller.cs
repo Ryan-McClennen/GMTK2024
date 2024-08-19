@@ -65,4 +65,10 @@ public class PlayerContoller : MonoBehaviour
         if (scale < 1.15f) vCam.m_Lens.OrthographicSize = MINSCREENSIZE;
         else vCam.m_Lens.OrthographicSize = (scale - 1.15f) * 3f + MINSCREENSIZE;
     }
+
+    public void CommitDie()
+    {
+        Time.timeScale = 0;
+        print(isChild ? "Child is Kil" : "Robot is kil");
+    }
 }
