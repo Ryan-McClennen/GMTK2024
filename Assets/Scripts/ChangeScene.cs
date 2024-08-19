@@ -24,8 +24,11 @@ public class ChangeScene : MonoBehaviour
     {
         curtain = GameObject.Find("Curtain").GetComponent<RectTransform>();
         canvasTransform = GameObject.Find("Canvas").GetComponent<RectTransform>();
-        startPoint = new Vector3(-755f, 0f, 0f);
-        endPoint = new Vector3(755f, 0f, 0f);
+        curtain.sizeDelta = canvasTransform.sizeDelta;
+
+        startPoint = new Vector3(canvasTransform.rect.width * (-1), 0f, 0f);
+        endPoint = new Vector3(canvasTransform.rect.width, 0f, 0f);
+
         if (loadingIn)
         {
             changingOut = true;
