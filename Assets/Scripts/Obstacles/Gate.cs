@@ -22,7 +22,7 @@ public class Gate : Obstacle
         transform.position = start + closedPos;
         goal = start + closedPos;
         speed = Vector3.Distance(closedPos, openPos) / 50 / moveTime;
-        isActive = false;
+        isActive = true;
     }
 
     public override void Activate()
