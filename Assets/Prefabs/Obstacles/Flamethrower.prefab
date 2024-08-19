@@ -303,7 +303,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.77
+      scalar: 0.375
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -356,7 +356,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 10
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -1057,8 +1057,8 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 75
-      minScalar: 45
+      scalar: 150
+      minScalar: 90
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4006,7 +4006,7 @@ ParticleSystem:
       properties: 0
       emitProbability: 1
   LightsModule:
-    enabled: 0
+    enabled: 1
     ratio: 0
     light: {fileID: 0}
     randomDistribution: 1
