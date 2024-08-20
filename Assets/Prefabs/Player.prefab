@@ -200,7 +200,7 @@ MonoBehaviour:
   vCam: {fileID: 0}
   balloonCollider: {fileID: 6495888157555169124}
   childCollider: {fileID: 6807316736210599987}
-  robotCollider: {fileID: 0}
+  robotCollider: {fileID: 6799962484620672283}
   spikes:
     serializedVersion: 2
     m_Bits: 128

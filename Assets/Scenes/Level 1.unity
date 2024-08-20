@@ -33348,6 +33348,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!70 &1245602027 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6799962484620672283, guid: 9c3111dc75890824da99533ddb66d5d4, type: 3}
+  m_PrefabInstance: {fileID: 1551854348}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1340876919
 GameObject:
   m_ObjectHideFlags: 0
@@ -33740,6 +33745,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8568774794414060319, guid: 9c3111dc75890824da99533ddb66d5d4, type: 3}
+      propertyPath: robotCollider
+      value: 
+      objectReference: {fileID: 1245602027}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
