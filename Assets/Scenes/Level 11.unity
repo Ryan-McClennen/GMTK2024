@@ -28008,7 +28008,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2239336727670687200, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: windForceMultiplier
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6586074142435767353, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: m_Name
