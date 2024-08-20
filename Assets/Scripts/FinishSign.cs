@@ -22,7 +22,7 @@ public class FinishSign : MonoBehaviour
 
     private void Update()
     {
-        if (hitbox.IsTouchingLayers(layer)) 
+        if (hitbox.IsTouchingLayers(layer) && !levelDone)
         {
             levelDone = true;
             StartCoroutine(Wait(2f));
@@ -34,4 +34,5 @@ public class FinishSign : MonoBehaviour
         yield return new WaitForSeconds(time);
         sceneChanger.SceneChangeCurtain();
     }
+
 }
