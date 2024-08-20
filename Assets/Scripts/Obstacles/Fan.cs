@@ -47,7 +47,7 @@ public class Fan : Obstacle
         shape.scale = new Vector3(transform.localScale.y * 2, 0, 1);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (isActive && blowArea.IsTouchingLayers(childLayer))
         {
