@@ -184,7 +184,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2239336727670687200, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: windForceMultiplier
-      value: 6
+      value: 36
       objectReference: {fileID: 0}
     - target: {fileID: 6586074142435767353, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: m_Name
@@ -27460,6 +27460,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2239336727670687200, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
+      propertyPath: windForceMultiplier
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 6586074142435767353, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: m_Name
       value: Fan (1)
@@ -28001,6 +28005,10 @@ PrefabInstance:
     - target: {fileID: 2069197572689235117, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2239336727670687200, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
+      propertyPath: windForceMultiplier
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6586074142435767353, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: m_Name
