@@ -7,20 +7,19 @@ public class Compass : MonoBehaviour
     [SerializeField]
     GameObject needle;
 
-    private Camera cam;
+    private GameObject reference;
     private Vector3 goal;
-    private Quaternion initialTransform;
 
     void Start()
     {
-        cam = Camera.main;
+        reference = GameObject.Find("Reference");
         goal = GameObject.Find("LevelFinish").transform.position;
-        initialTransform =  transform.rotation;
+        goal.z = 0;
     }
 
     void Update()
     {
-        needle.transform.rotation = initialTransform;
-        needle.transform.Rotate(0, 0, Vector3.Angle(cam.transform.position, goal));
+        reference.transform.right = goal - reference.transform.position;
+        needle.transform.rotation = reference.transform.rotation;
     }
 }
