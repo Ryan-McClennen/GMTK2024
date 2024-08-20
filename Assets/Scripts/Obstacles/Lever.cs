@@ -12,8 +12,14 @@ public class Lever : MonoBehaviour
     [SerializeField]
     private Animator animator;
 
+    [SerializeField]
+    AudioSource source;
+
+    private bool canFlip;
+
     private void Start()
     {
+        canFlip = true;
         animator.SetBool("isActive", true);
     }
 
@@ -24,7 +30,7 @@ public class Lever : MonoBehaviour
             Collider2D[] colliders = Physics2D.OverlapBoxAll(transform.position, transform.localScale, 0);
             foreach (Collider2D collider in colliders)
             {
-                if (collider.tag == "Player")
+                if (collider.tag == "Player" &&  canFlip)
                 {
                     if (!obstacle.isActive)
                     {
@@ -36,10 +42,19 @@ public class Lever : MonoBehaviour
                         obstacle.Deactivate();
                         animator.SetBool("isActive", false);
                     }
+                    source.Play();
 
                     obstacle.isActive = !obstacle.isActive;
+                    canFlip = false;
+                    StartCoroutine(DelayLever());
                 }
             }
         }
+    }
+
+    IEnumerator DelayLever()
+    {
+        yield return new WaitForSeconds(0.5f);
+        canFlip = true;
     }
 }

@@ -25,8 +25,14 @@ public class Fan : Obstacle
     [SerializeField]
     private ParticleSystem air;
 
+    [SerializeField]
+    AudioSource source;
+
+    private Camera cam;
+
     private void Start()
     {
+        cam = Camera.main;
         playerRB = GameObject.Find("Child").GetComponent<Rigidbody2D>();
         isActive = true;
         animator.SetBool("isActive", true);
@@ -48,6 +54,12 @@ public class Fan : Obstacle
         {
             playerRB.AddForce(transform.rotation * Vector3.right * windForceMultiplier / 3);
         }
+
+        float distance = Vector3.Distance(transform.position, cam.transform.position);
+        if (isActive && distance < 30)
+            source.volume = (900 - Mathf.Pow(distance, 2)) / 900f;
+        else
+            source.volume = 0;
     }
 
     public override void Activate()
