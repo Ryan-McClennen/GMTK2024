@@ -110,28 +110,30 @@ public class PlayerContoller : MonoBehaviour
         GameObject.Find("Background").GetComponent<AudioSource>().Stop();
         GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().Follow = null;
 
-        Invoke("Reset", 4f);
+        resettor.restartButton.enabled = false;
+        resettor.backToMenuButton.enabled = false;
+        resettor.pauseButton.enabled = false;
+
+        Invoke("Reset", 6f);
     }
 
     private void Reset()
     {
         if (!died)
         {
+            died = true;
             resettor.PauseClicked();
-            StartCoroutine(Wait(5f));
-            StartCoroutine(resettor.sceneRestart());
+            StartCoroutine(Wait(3f));
         }
-        died = true;
-<<<<<<< HEAD
-
-        print("Reset");
+    }
+    private void Reload()
+    {
+        StartCoroutine(resettor.sceneRestart());
     }
     public IEnumerator Wait(float timeAmount)
     {
-        yield return new WaitForSeconds(timeAmount);
-
-=======
->>>>>>> e5b092258eb76342a9993ca5337ffbd082c64edf
+        yield return new WaitForSecondsRealtime(timeAmount);
+        Reload();
     }
 }
 //hello

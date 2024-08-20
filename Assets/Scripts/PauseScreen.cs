@@ -9,9 +9,9 @@ public class PauseScreen : MonoBehaviour
 {
     private FinishSign finish;
     private ChangeScene sceneChanger;
-    private Button pauseButton;
+    public Button pauseButton;
     [SerializeField]
-    private Button backToMenuButton;
+    public Button backToMenuButton;
     [SerializeField]
     private RectTransform backToMenuTransform;
     [SerializeField]
@@ -19,7 +19,7 @@ public class PauseScreen : MonoBehaviour
     [SerializeField]
     private Sprite pauseButtonSprite;
     [SerializeField]
-    private Button restartButton;
+    public Button restartButton;
     private bool timeStopped = false;
     private bool restartClicked = false;
     private float buttonScale = Screen.width * Screen.height / 400000f;
