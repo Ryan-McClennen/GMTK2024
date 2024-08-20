@@ -60,6 +60,12 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField]
     SpriteRenderer render;
 
+    [SerializeField]
+    AudioSource source;
+
+    [SerializeField]
+    AudioClip[] clips;
+
     private void Start()
     {
         isPlayer = true;
@@ -69,6 +75,35 @@ public class BalloonMovement : MonoBehaviour
     {
         if (transform.position.y + 1.25 > 148 || transform.position.y - 1.25 < -20)
             GameObject.Find("Player").GetComponent<PlayerContoller>().CommitDie();
+
+        if (!isPlayer) return;
+
+        if (Input.GetKey(KeyCode.LeftArrow)) transform.localScale = new Vector2(1f, 1f);
+        if (Input.GetKey(KeyCode.RightArrow)) transform.localScale = new Vector2(-1f, 1f);
+
+        if (balloonNumber == 0 || balloonNumber == 8) source.Stop();
+
+        bool up = Input.GetKeyDown(KeyCode.UpArrow);
+        bool continuousUp = Input.GetKey(KeyCode.UpArrow);
+        bool upReleased = Input.GetKeyUp(KeyCode.UpArrow);
+        bool down = Input.GetKeyDown(KeyCode.DownArrow);
+        bool continuousDown = Input.GetKey(KeyCode.DownArrow);
+        bool downReleased = Input.GetKeyUp(KeyCode.DownArrow);
+
+        if (continuousUp == continuousDown)
+        {
+            source.Stop();
+        }
+        else if ((up && balloonNumber != 8) || (downReleased && continuousUp))
+        {
+            source.clip = clips[1];
+            source.Play();
+        }
+        else if ((down && balloonNumber != 0) || (upReleased && continuousDown))
+        {
+            source.clip = clips[0];
+            source.Play();
+        }
     }
 
     private void FixedUpdate()
@@ -148,9 +183,6 @@ public class BalloonMovement : MonoBehaviour
         {
             rb.AddForce(GetFloatiness() * 0.2f);
         }
-
-        if (Input.GetKey(KeyCode.LeftArrow)) transform.localScale = new Vector2(1f, 1f);
-        if (Input.GetKey(KeyCode.RightArrow)) transform.localScale = new Vector2(-1f, 1f);
     }
 
     public bool IsGrounded()
