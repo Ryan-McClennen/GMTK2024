@@ -105,19 +105,35 @@ public class PlayerContoller : MonoBehaviour
         else
             robotMove.Die();
 
+        Invoke("Reset", 1f);
         if (!gameOver.isPlaying) gameOver.Play();
         GameObject.Find("Background").GetComponent<AudioSource>().Stop();
         GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().Follow = null;
 
-        Invoke("Reset", 3f);
+        resettor.restartButton.enabled = false;
+        resettor.backToMenuButton.enabled = false;
+        resettor.pauseButton.enabled = false;
+
+        Invoke("Reset", 6f);
     }
 
     private void Reset()
     {
         if (!died)
         {
-            resettor.LevelRestart();
+            died = true;
+            resettor.PauseClicked();
+            StartCoroutine(Wait(3f));
         }
-        died = true;
+    }
+    private void Reload()
+    {
+        StartCoroutine(resettor.sceneRestart());
+    }
+    public IEnumerator Wait(float timeAmount)
+    {
+        yield return new WaitForSecondsRealtime(timeAmount);
+        Reload();
     }
 }
+//hello

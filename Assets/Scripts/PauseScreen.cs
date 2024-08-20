@@ -9,9 +9,9 @@ public class PauseScreen : MonoBehaviour
 {
     private FinishSign finish;
     private ChangeScene sceneChanger;
-    private Button pauseButton;
+    public Button pauseButton;
     [SerializeField]
-    private Button backToMenuButton;
+    public Button backToMenuButton;
     [SerializeField]
     private RectTransform backToMenuTransform;
     [SerializeField]
@@ -19,7 +19,7 @@ public class PauseScreen : MonoBehaviour
     [SerializeField]
     private Sprite pauseButtonSprite;
     [SerializeField]
-    private Button restartButton;
+    public Button restartButton;
     private bool timeStopped = false;
     private bool restartClicked = false;
     private float buttonScale = Screen.width * Screen.height / 400000f;
@@ -36,22 +36,22 @@ public class PauseScreen : MonoBehaviour
         finish = GameObject.Find("LevelFinish").GetComponent<FinishSign>();
         sceneChanger = GameObject.Find("EventSystem").GetComponent<ChangeScene>();
         pauseButton = GameObject.Find("Pause Button").GetComponent<Button>();
-        restartTransform.localPosition = Vector3.zero;
-        restartTransform.localScale = new Vector2(buttonScale, buttonScale);
-        pauseTransform.localScale = new Vector2(buttonScale / 2f, buttonScale / 2f);
-        pauseTransform.localPosition = new Vector3((-Screen.width / 2) + pauseTransform.localScale.x * 30, (Screen.height / 2) - pauseTransform.localScale.y * 30, 0);
+        //restartTransform.localPosition = Vector3.zero;
+        //restartTransform.localScale = new Vector2(buttonScale, buttonScale);
+        //pauseTransform.localScale = new Vector2(buttonScale / 2f, buttonScale / 2f);
+        //pauseTransform.localPosition = new Vector3((-Screen.width / 2) + pauseTransform.localScale.x * 30, (Screen.height / 2) - pauseTransform.localScale.y * 30, 0);
         backToMenuButton.enabled = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        restartTransform.localScale = new Vector2(buttonScale, buttonScale);
-        pauseTransform.localScale = new Vector2(buttonScale / 2f, buttonScale / 2f);
-        pauseTransform.localPosition = new Vector3((-Screen.width / 2) + pauseTransform.localScale.x * 30, (Screen.height / 2) - pauseTransform.localScale.y * 30, 0);
+        //restartTransform.localScale = new Vector2(buttonScale, buttonScale);
+        //pauseTransform.localScale = new Vector2(buttonScale / 2f, buttonScale / 2f);
+        //pauseTransform.localPosition = new Vector3((-Screen.width / 2) + pauseTransform.localScale.x * 30, (Screen.height / 2) - pauseTransform.localScale.y * 30, 0);
 
-        backToMenuTransform.localScale = new Vector2(buttonScale / 1.4f, buttonScale / 1.4f);
-        backToMenuTransform.localPosition = new Vector3(0, (-Screen.height / 2) + pauseTransform.localScale.y * 55, 0);
+        //backToMenuTransform.localScale = new Vector2(buttonScale / 1.4f, buttonScale / 1.4f);
+        //backToMenuTransform.localPosition = new Vector3(0, (-Screen.height / 2) + pauseTransform.localScale.y * 55, 0);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -121,7 +121,7 @@ public class PauseScreen : MonoBehaviour
         restartClicked = true;
         StartCoroutine(sceneRestart());
     }
-    IEnumerator sceneRestart()
+    public IEnumerator sceneRestart()
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().name);
 
