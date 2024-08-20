@@ -23,18 +23,24 @@ public class BirdFlight : MonoBehaviour
     [SerializeField]
     private LayerMask layer;
 
+    [SerializeField]
+    AudioSource source;
+
     private bool ableToFly;
+    Camera cam;
 
     private Vector3 pos1;
     private Vector3 pos2;
     private void Start()
     {
+        cam = Camera.main;
         pos1 = transform.position;
         pos2 = destination;
         ableToFly = false;
         StartCoroutine(DelayStart());
+        Invoke("StartSound", Random.value);
     }
-    // Update is called once per frame
+    
     void Update()
     {
         if (ableToFly)
@@ -48,6 +54,12 @@ public class BirdFlight : MonoBehaviour
             }
             
         }
+
+        float distance = Vector3.Distance(transform.position, cam.transform.position);
+        if (distance < 30)
+            source.volume = 0.4f * (900 - Mathf.Pow(distance, 2)) / 900f;
+        else
+            source.volume = 0;
 
         if (hitbox.IsTouchingLayers(layer))
             GameObject.Find("Player").GetComponent<PlayerContoller>().CommitDie();
@@ -66,5 +78,10 @@ public class BirdFlight : MonoBehaviour
     {
         yield return new WaitForSeconds(startDelay);
         ableToFly = true;
+    }
+
+    void StartSound()
+    {
+        source.Play();
     }
 }
