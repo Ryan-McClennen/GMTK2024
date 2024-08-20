@@ -66,14 +66,34 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField]
     AudioClip[] clips;
 
+    [SerializeField]
+    Animator balloonDeath;
+
+    [SerializeField]
+    SpriteRenderer balloonDeathRenderer;
+
+    [SerializeField]
+    SpriteRenderer balloonString;
+
+    [SerializeField]
+    Transform balloonPos;
+
+    private bool canControl;
+
     private void Start()
     {
+        canControl = true;
         isPlayer = true;
+        balloonDeath.SetInteger("deathNum", -1);
     }
 
     private void Update()
     {
-        if (transform.position.y + 1.25 > 148 || transform.position.y - 1.25 < -20)
+        if (balloonDeath.GetCurrentAnimatorStateInfo(0).IsName("Done")) balloonDeathRenderer.sprite  = null;
+
+        if (!canControl) return;
+
+        if (balloonPos.position.y + 1.7f * balloonPos.localScale.x > 148f || transform.position.y - 1.25f < -17f)
             GameObject.Find("Player").GetComponent<PlayerContoller>().CommitDie();
 
         if (!isPlayer) return;
@@ -108,6 +128,8 @@ public class BalloonMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (!canControl) return;
+
         animator.SetBool("HasRobot", isPlayer);
 
         float balloonScale = balloonNumber / 7 * 22f - 8f;
@@ -139,7 +161,7 @@ public class BalloonMovement : MonoBehaviour
         }
         else if (balloonScale < 3.5)
         {
-            medTrans = 1; //Mathf.Pow(3.5f - balloonScale, 0.5f);
+            medTrans = 1;
             largeTrans = Mathf.Pow(balloonScale - 2.5f, 0.5f);
         }
         else
@@ -210,7 +232,6 @@ public class BalloonMovement : MonoBehaviour
     {
         isPlayer = true;
         childCollider.isTrigger = false;
-        rb.velocity = Vector2.zero;
         rb.isKinematic = false;
         render.sortingOrder = 1;
         tag = "Player";
@@ -220,8 +241,32 @@ public class BalloonMovement : MonoBehaviour
     {
         isPlayer = false;
         childCollider.isTrigger = true;
+        rb.velocity = Vector2.zero;
         rb.isKinematic = true;
         render.sortingOrder = 0;
         tag = "Untagged";
+    }
+
+    public void RemoveControl()
+    {
+        canControl = false;
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
+    }
+
+    public void Die()
+    {
+        animator.SetTrigger("isDead");
+        if (balloonNumber < 0.75f)
+            balloonDeath.SetInteger("deathNum", 0);
+        else if (balloonNumber < 3f)
+            balloonDeath.SetInteger("deathNum", 1);
+        else
+            balloonDeath.SetInteger("deathNum", 2);
+
+        foreach (SpriteRenderer b in balloons)
+            b.color = new Color(0, 0, 0, 0);
+
+        balloonString.color = new Color(0, 0, 0, 0);
     }
 }

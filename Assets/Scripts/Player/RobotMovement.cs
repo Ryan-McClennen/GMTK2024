@@ -39,16 +39,27 @@ public class RobotMovement : MonoBehaviour
     [SerializeField]
     AudioClip[] clips;
 
+    [SerializeField]
+    ParticleSystem deathExplosion;
+
+    private bool canControl;
+
     private bool beep;
 
     private void Start()
     {
         UnsetAsPlayer();
         beep = true;
+        canControl = true;
     }
 
     private void Update()
     {
+        if  (!canControl) return;
+
+        if (transform.position.y - 1f < -17f)
+            GameObject.Find("Player").GetComponent<PlayerContoller>().CommitDie();
+
         animator.SetBool("isPlayer", isPlayer);
         animator.SetBool("isGrounded", IsGrounded());
         animator.SetBool("isMoving", Input.GetAxisRaw("Horizontal") != 0);
@@ -106,11 +117,15 @@ public class RobotMovement : MonoBehaviour
                 StartCoroutine(ResetBeep());
             }
         }
+        else if (!IsGrounded() && source.clip == clips[5])
+            source.Stop();
     }
         
 
     private void FixedUpdate()
     {
+        if  (!canControl) return;
+
         if (isPlayer)
         {
             horizontal = Input.GetAxisRaw("Horizontal");
@@ -159,7 +174,7 @@ public class RobotMovement : MonoBehaviour
         if (transform.localScale.x == transform.parent.localScale.x) xPos = 0.875f;
         else xPos = 0.75f;
         transform.localPosition = new Vector3(xPos, 0.315f, 1f);
-        
+
         tag = "Untagged";
 
         animator.SetTrigger("Deactivate");
@@ -170,5 +185,24 @@ public class RobotMovement : MonoBehaviour
         float time = Random.Range(3, 5);
         yield return new WaitForSeconds(time);
         beep = true;
+    }
+
+    public void RemoveControl()
+    {
+        canControl = false;
+        rb.velocity = Vector2.zero;
+        rb.isKinematic = true;
+    }
+
+    public void Die()
+    {
+        render.color = new Color(0, 0, 0);
+        deathExplosion.Play();
+    }
+    
+    public void ChildDie()
+    {
+        transform.localPosition = new Vector2(-1f * transform.parent.localScale.x, -2.5f);
+        transform.localScale = new Vector2(transform.localScale.x,  -1);
     }
 }
