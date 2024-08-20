@@ -41,10 +41,13 @@ public class PauseScreen : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        restartTransform.localScale = new Vector2(buttonScale, buttonScale);
+        pauseTransform.localScale = new Vector2(buttonScale / 2f, buttonScale / 2f);
+        pauseTransform.localPosition = new Vector3((-Screen.width / 2) + pauseTransform.localScale.x * 30, (Screen.height / 2) - pauseTransform.localScale.y * 30, 0);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (!finish.levelDone && !sceneChanger.changingScenes && !sceneChanger.pause)
+            if (!finish.levelDone && !sceneChanger.changingScenes && !sceneChanger.pause && !sceneChanger.changingOut)
             {
                 sceneChanger.curtain.localPosition = sceneChanger.startPoint;
                 sceneChanger.pause = true;
@@ -79,7 +82,7 @@ public class PauseScreen : MonoBehaviour
 
     public void PauseClicked()
     {
-        if (!finish.levelDone && !sceneChanger.changingScenes && !sceneChanger.pause)
+        if (!finish.levelDone && !sceneChanger.changingScenes && !sceneChanger.pause && !sceneChanger.changingOut)
         {
             sceneChanger.curtain.localPosition = sceneChanger.startPoint;
             sceneChanger.pause = true;
