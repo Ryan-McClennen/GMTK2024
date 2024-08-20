@@ -7,13 +7,15 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
-    private RectTransform curtain;
-    private bool changingScenes = false;
-    private bool changingOut = false;
+    public RectTransform curtain;
+    public bool changingScenes = false;
+    public bool changingOut = false;
+    public bool pause = false;
     [SerializeField]
     private bool loadingIn;
+    public bool pauseMenuOpen = false;
     private RectTransform canvasTransform;
-    private Vector3 startPoint;
+    public Vector3 startPoint;
     private Vector3 endPoint;
     [SerializeField]
     public String nextScene;
@@ -53,9 +55,31 @@ public class ChangeScene : MonoBehaviour
             curtain.localPosition += moveDir * moveSpeed * Time.deltaTime;
         }
 
-        if (Vector3.Distance(curtain.localPosition, Vector3.zero) < 0.001f && changingScenes)
+        if (pauseMenuOpen)
         {
-            changingScenesOut();
+            if (pause)
+            {
+                Vector3 moveDir = (curtain.localPosition) * (-1);
+                float moveSpeed = 10f;
+                curtain.localPosition += moveDir * moveSpeed * Time.deltaTime;
+            }
+            else
+            {
+                Vector3 moveDir = startPoint - curtain.localPosition;
+                float moveSpeed = 7f;
+                curtain.localPosition += moveDir * moveSpeed * Time.deltaTime;
+            }
+        }
+
+        if (Vector3.Distance(curtain.localPosition, endPoint) < 0.001f)
+        {
+            pauseMenuOpen = false;
+            changingOut = false;
+        }
+
+        if (Vector3.Distance(curtain.localPosition, Vector3.zero) < 0.001f && changingScenes && !pauseMenuOpen)
+        {
+                changingScenesOut();
         }
 
         if (changingOut)

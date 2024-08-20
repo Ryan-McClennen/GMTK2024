@@ -13,6 +13,8 @@ public class FinishSign : MonoBehaviour
     [SerializeField]
     LayerMask layer;
 
+    public bool levelDone = false;
+
     private void Start()
     {
         sceneChanger = GameObject.Find("EventSystem").GetComponent<ChangeScene>();
@@ -20,7 +22,11 @@ public class FinishSign : MonoBehaviour
 
     private void Update()
     {
-        if (hitbox.IsTouchingLayers(layer)) StartCoroutine(Wait(2f));
+        if (hitbox.IsTouchingLayers(layer)) 
+        {
+            levelDone = true;
+            StartCoroutine(Wait(2f));
+        }
     }
 
     IEnumerator Wait(float time)
