@@ -7,24 +7,6 @@ using UnityEngine.UI;
 public class LevelSelector : MonoBehaviour
 {
     private string sceneName;
-    public int maxLevelUnlocked;
-    [SerializeField]
-    public Button[] levels;
-
-
-    private void Start()
-    {
-        foreach(var button in levels)
-        {
-            button.enabled = false;
-        }
-
-        for (int i = 0; i < LevelTracker.unlockedLevelMax; i++)
-        {
-            levels[i].enabled = true;
-        }
-    }
-
     public void clicked1()
     {
         sceneName = "Level 1";
@@ -100,6 +82,12 @@ public class LevelSelector : MonoBehaviour
     public void clickedMain()
     {
         sceneName = "Main Menu Screen";
+        StartCoroutine(LoadLevel(sceneName));
+    }
+
+    public void clickedLevel()
+    {
+        sceneName = "Level Select";
         StartCoroutine(LoadLevel(sceneName));
     }
 
