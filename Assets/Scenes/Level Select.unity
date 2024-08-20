@@ -637,20 +637,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a243bf7738b604e47a1e1c6b47b2743c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxLevelUnlocked: 0
-  levels:
-  - {fileID: 583044376}
-  - {fileID: 1670380892}
-  - {fileID: 1799266048}
-  - {fileID: 1846322524}
-  - {fileID: 1192264480}
-  - {fileID: 65784859}
-  - {fileID: 589343319}
-  - {fileID: 1652977937}
-  - {fileID: 1712248979}
-  - {fileID: 536058013}
-  - {fileID: 533394036}
-  - {fileID: 808767496}
 --- !u!1 &533394034
 GameObject:
   m_ObjectHideFlags: 0
@@ -3702,6 +3688,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1799266046}
   m_CullTransparentMesh: 1
+--- !u!1 &1818451723 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6680202438674879538, guid: 2a888ca04191a3248b767ae3943e16cf, type: 3}
+  m_PrefabInstance: {fileID: 2659530136448882618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1818451724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1818451723}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fc6fa6848f367540802e143a82c25d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLevelUnlocked: 0
+  levels: []
 --- !u!1 &1846322522
 GameObject:
   m_ObjectHideFlags: 0
@@ -3890,7 +3895,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6680202438674879538, guid: 2a888ca04191a3248b767ae3943e16cf, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1818451724}
   m_SourcePrefab: {fileID: 100100000, guid: 2a888ca04191a3248b767ae3943e16cf, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
