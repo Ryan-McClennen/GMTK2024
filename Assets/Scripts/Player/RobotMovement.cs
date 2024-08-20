@@ -155,7 +155,11 @@ public class RobotMovement : MonoBehaviour
         rb.isKinematic = true;
         render.sortingOrder = 0;
 
-        transform.localPosition = new Vector3(0.85f, 0.4f, 1f);
+        float xPos;
+        if (transform.localScale.x == transform.parent.localScale.x) xPos = 0.875f;
+        else xPos = 0.75f;
+        transform.localPosition = new Vector3(xPos, 0.315f, 1f);
+        
         tag = "Untagged";
 
         animator.SetTrigger("Deactivate");
