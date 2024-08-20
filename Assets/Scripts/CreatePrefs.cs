@@ -10,8 +10,6 @@ public class CreatePrefs : MonoBehaviour
 
     void Start()
     {
-        // PlayerPrefs.DeleteKeys();
-
         if (!PlayerPrefs.HasKey("MaxLevel"))
             PlayerPrefs.SetInt("MaxLevel", 1);
         if (!PlayerPrefs.HasKey("Master"))
