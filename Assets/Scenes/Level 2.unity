@@ -468,6 +468,46 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: -6.8975496
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -3.0441499
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 12.24245
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 9.030951
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].x
+      value: -12.111371
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].y
+      value: -1.041472
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].x
+      value: -8.687023
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].y
+      value: -5.048184
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: -1.6822057
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].y
+      value: -1.198946
+      objectReference: {fileID: 0}
     - target: {fileID: 9057893927226034392, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
       propertyPath: m_Name
       value: Spike Light (8)
@@ -49379,6 +49419,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 4.2
       objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: -5.21435
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -5.2924995
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 10.328751
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 12.5816
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].x
+      value: -8.192328
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].y
+      value: 0.26011375
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].x
+      value: -8.51526
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].y
+      value: -10.846335
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: -1.9145578
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].y
+      value: -5.4158154
+      objectReference: {fileID: 0}
     - target: {fileID: 9057893927226034392, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
       propertyPath: m_Name
       value: Spike Light (9)
@@ -49576,6 +49656,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7191165436174842897, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191165436174842897, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7191165436174842897, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
       propertyPath: m_LocalPosition.x
       value: -11.036468
       objectReference: {fileID: 0}
@@ -49614,6 +49702,46 @@ PrefabInstance:
     - target: {fileID: 7191165436174842897, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: -5.1042
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -4.7178507
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 10.141399
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 12.66405
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].x
+      value: -8.217591
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].y
+      value: 0.91846466
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].x
+      value: -6.3631487
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].y
+      value: -10.352737
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: -1.9917231
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].y
+      value: -4.8883743
       objectReference: {fileID: 0}
     - target: {fileID: 9057893927226034392, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
       propertyPath: m_Name
@@ -50559,6 +50687,46 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: -5.87255
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -4.1545
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 12.1130495
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 11.4415
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].x
+      value: -10.95594
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].y
+      value: -4.3507767
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].x
+      value: -6.52911
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].y
+      value: -8.568665
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: -0.78850937
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].y
+      value: 0.25639343
+      objectReference: {fileID: 0}
     - target: {fileID: 9057893927226034392, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
       propertyPath: m_Name
       value: Spike Light (6)
@@ -50753,6 +50921,46 @@ PrefabInstance:
     - target: {fileID: 7191165436174842897, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: -21.22
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: -9.786099
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -4.6537504
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 10.7984
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 9.26645
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].x
+      value: -13.554727
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].y
+      value: -4.319376
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].x
+      value: -6.016878
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].y
+      value: -6.8918295
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: -7.7728033
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].y
+      value: -2.4180717
       objectReference: {fileID: 0}
     - target: {fileID: 9057893927226034392, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
       propertyPath: m_Name
@@ -51189,6 +51397,46 @@ PrefabInstance:
     - target: {fileID: 7191165436174842897, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.x
+      value: -7.0343
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Center.y
+      value: -3.5954
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.x
+      value: 12.4032
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_LocalBounds.m_Extent.y
+      value: 8.558701
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].x
+      value: -12.408094
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[0].y
+      value: -2.1932983
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].x
+      value: -3.4588423
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[1].y
+      value: -5.1249847
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].x
+      value: -1.6598015
+      objectReference: {fileID: 0}
+    - target: {fileID: 9041410295078171325, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
+      propertyPath: m_ShapePath.Array.data[2].y
+      value: -2.0670624
       objectReference: {fileID: 0}
     - target: {fileID: 9057893927226034392, guid: 6cc7bf0236bdd554199d9bb413604b79, type: 3}
       propertyPath: m_Name
