@@ -24,8 +24,14 @@ public class Flamethrower : Obstacle
     [SerializeField]
     public Rigidbody2D playerRB;
 
+    [SerializeField]
+    AudioSource source;
+
+    private Camera cam;
+
     private void Start()
     {
+        cam =  Camera.main;
         playerRB = GameObject.Find("Child").GetComponent<Rigidbody2D>();
         isActive = true;
         animator.SetBool("isActive", true);
@@ -43,6 +49,12 @@ public class Flamethrower : Obstacle
         {
             playerRB.AddForce(Vector2.up * 0.2f);
         }
+
+        float distance = Vector3.Distance(transform.position, cam.transform.position);
+        if (isActive && distance < 30)
+            source.volume = (900 - Mathf.Pow(distance, 2)) / 900f;
+        else
+            source.volume = 0;
     }
 
     public override void Activate()
