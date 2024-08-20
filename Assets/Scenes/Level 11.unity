@@ -27823,6 +27823,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+    - target: {fileID: 1422488289617280299, guid: 7ddf868f5fda753468bf7ab0bd4dcb53, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 4614e3e93aefea041bc8fc1531f8d54d, type: 3}
     - target: {fileID: 2303905852028574217, guid: 7ddf868f5fda753468bf7ab0bd4dcb53, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
