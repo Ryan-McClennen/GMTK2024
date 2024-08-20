@@ -22,6 +22,15 @@ public class BoxEnlargement : MonoBehaviour
     [SerializeField]
     private Rigidbody2D rb;
 
+    [SerializeField]
+    AudioSource source;
+
+    [SerializeField]
+    AudioClip inflating;
+
+    [SerializeField]
+    AudioClip deflating;
+
     private float massMultiplier =  0.8f;
 
     public bool isGrowing;
@@ -35,8 +44,25 @@ public class BoxEnlargement : MonoBehaviour
 
         float goal = 4f;
 
-        if (isGrowing && !isShrinking) goal = 10f;
-        if (isShrinking  && !isGrowing) goal = 1f;
+        if (isGrowing && !isShrinking)
+        {
+            goal = 10f;
+        }
+        if (isShrinking  && !isGrowing)
+        {
+            goal = 1f;
+        }
+
+        if (boxSizeNumber + 0.05 < goal && (!source.isPlaying || source.clip == deflating))
+        {
+            source.clip = inflating;
+            source.Play();
+        }
+        else if (boxSizeNumber - 0.05 > goal && (!source.isPlaying || source.clip == inflating))
+        {
+            source.clip = deflating;
+            source.Play();
+        }
 
         if (!Mathf.Approximately(boxSizeNumber, goal))
         {
@@ -51,6 +77,12 @@ public class BoxEnlargement : MonoBehaviour
                 boxSizeNumber = Mathf.Clamp(boxSizeNumber, 1f, boxSizeNumberCap);
             }
         }
+
+        
+        if ((isGrowing == isShrinking && Math.Abs(boxSizeNumber - 4f) < 0.05) ||
+            (isGrowing && boxScale > 9.9f)  || 
+            (isShrinking && boxScale <  1.1f))
+            source.Stop();
 
         float smallTrans = 0;
         float medTrans = 0;
