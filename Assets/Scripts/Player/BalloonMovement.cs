@@ -210,6 +210,7 @@ public class BalloonMovement : MonoBehaviour
     {
         isPlayer = true;
         childCollider.isTrigger = false;
+        rb.velocity = Vector2.zero;
         rb.isKinematic = false;
         render.sortingOrder = 1;
         tag = "Player";

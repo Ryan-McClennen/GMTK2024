@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
 
@@ -29,9 +31,15 @@ public class Fan : Obstacle
         isActive = true;
         animator.SetBool("isActive", true);
         animator.SetFloat("speed", windForceMultiplier / 2);
+
         ParticleSystem.MainModule mainModule = air.main;
         mainModule.startSpeed = windForceMultiplier * 4;
-        mainModule.startLifetime = blowArea.bounds.size.x / mainModule.startSpeed.constant;
+        float fanLength = transform.rotation.eulerAngles.z % 180 == 0 ? blowArea.bounds.size.x : blowArea.bounds.size.y;
+        mainModule.startLifetime = fanLength / mainModule.startSpeed.constant;
+        mainModule.startRotationZ = Mathf.Deg2Rad * transform.rotation.eulerAngles.z;
+        
+        ParticleSystem.ShapeModule shape = air.shape;
+        shape.scale = new Vector3(transform.localScale.y * 2, 0, 1);
     }
 
     private void Update()
