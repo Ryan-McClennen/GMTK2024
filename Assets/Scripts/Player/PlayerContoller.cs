@@ -110,11 +110,15 @@ public class PlayerContoller : MonoBehaviour
         GameObject.Find("Background").GetComponent<AudioSource>().Stop();
         GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().Follow = null;
 
+<<<<<<< HEAD
         resettor.restartButton.enabled = false;
         resettor.backToMenuButton.enabled = false;
         resettor.pauseButton.enabled = false;
 
         Invoke("Reset", 6f);
+=======
+        Invoke("Reset", 3f);
+>>>>>>> 53f16a62815f7d8028e5e0ac2ada0d6101872550
     }
 
     private void Reset()

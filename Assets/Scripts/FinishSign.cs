@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,9 @@ public class FinishSign : MonoBehaviour
 
     [SerializeField]
     LayerMask layer;
+
+    [SerializeField]
+    AudioSource source;
 
     public bool levelDone = false;
 
@@ -33,9 +37,11 @@ public class FinishSign : MonoBehaviour
             int newMax = int.Parse(num) + 1;
             PlayerPrefs.SetInt("MaxLevel", Math.Max(oldMax, newMax));
             PlayerPrefs.Save();
-            print(newMax);
             levelDone = true;
-            StartCoroutine(Wait(2f));
+            if (!source.isPlaying) source.Play();
+            GameObject.Find("Background").GetComponent<AudioSource>().Stop();
+            GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().Follow = null;
+            StartCoroutine(Wait(3f));
         }
     }
 
