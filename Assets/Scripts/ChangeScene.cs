@@ -7,25 +7,31 @@ using UnityEngine.SceneManagement;
 
 public class ChangeScene : MonoBehaviour
 {
+    [SerializeField]
     public RectTransform curtain;
     public bool changingScenes = false;
     public bool changingOut = false;
     public bool pause = false;
     [SerializeField]
     private bool loadingIn;
+    private bool curtainLoadIn;
     public bool pauseMenuOpen = false;
-    private RectTransform canvasTransform;
+    public RectTransform canvasTransform;
     public Vector3 startPoint;
     private Vector3 endPoint;
     [SerializeField]
     public String nextScene;
+    private FinishSign finishLine;
 
     //private Collider2D finishLine;
 
     private void Start()
     {
-        curtain = GameObject.Find("Curtain").GetComponent<RectTransform>();
+        curtain.localPosition = Vector3.zero;
+        Time.timeScale = 1f;
+        //curtain = GameObject.Find("Curtain").GetComponent<RectTransform>();
         canvasTransform = GameObject.Find("Canvas").GetComponent<RectTransform>();
+        finishLine = GameObject.Find("LevelFinish").GetComponent<FinishSign>();
         curtain.sizeDelta = canvasTransform.sizeDelta;
 
         startPoint = new Vector3(canvasTransform.rect.width * (-1), 0f, 0f);
@@ -33,9 +39,9 @@ public class ChangeScene : MonoBehaviour
 
         if (loadingIn)
         {
+            curtainLoadIn = true;
             changingOut = true;
             changingScenes = false;
-            StartCoroutine(Wait(2.5f));
         }
         //finishLine = GameObject.Find("LevelFinish").GetComponent<Collider2D>();
     }
@@ -48,26 +54,32 @@ public class ChangeScene : MonoBehaviour
 
     private void Update()
     {
+
+        curtain.sizeDelta = canvasTransform.sizeDelta;
+
+        startPoint = new Vector3(canvasTransform.rect.width * (-1), 0f, 0f);
+        endPoint = new Vector3(canvasTransform.rect.width, 0f, 0f);
+
         if (changingScenes)
         {
             Vector3 moveDir = (curtain.localPosition) * (-1);
             float moveSpeed = 10f;
-            curtain.localPosition += moveDir * moveSpeed * Time.deltaTime;
+            curtain.localPosition += moveDir * moveSpeed * Time.unscaledDeltaTime;
         }
 
-        if (pauseMenuOpen)
+        if (pauseMenuOpen && !changingScenes)
         {
             if (pause)
             {
                 Vector3 moveDir = (curtain.localPosition) * (-1);
-                float moveSpeed = 10f;
-                curtain.localPosition += moveDir * moveSpeed * Time.deltaTime;
+                float moveSpeed = 24f;
+                curtain.localPosition += moveDir * moveSpeed * Time.unscaledDeltaTime;
             }
             else
             {
                 Vector3 moveDir = startPoint - curtain.localPosition;
-                float moveSpeed = 7f;
-                curtain.localPosition += moveDir * moveSpeed * Time.deltaTime;
+                float moveSpeed = 24f;
+                curtain.localPosition += moveDir * moveSpeed * Time.unscaledDeltaTime;
             }
         }
 
@@ -84,16 +96,23 @@ public class ChangeScene : MonoBehaviour
 
         if (changingOut)
         {
-            Vector3 moveDir = endPoint - curtain.localPosition;
-            float moveSpeed = 7f;
-            curtain.localPosition += moveDir * moveSpeed * Time.deltaTime;
+            if (loadingIn && curtainLoadIn)
+            {
+                StartCoroutine(LoadInWait());
+            }
+            else if (!loadingIn && !finishLine.levelDone)
+            {
+                Vector3 moveDir = endPoint - curtain.localPosition;
+                float moveSpeed = 10f;
+                curtain.localPosition += moveDir * moveSpeed * Time.unscaledDeltaTime;
+            }
         }
     }
 
     private void changingScenesOut()
     {
         StartCoroutine(sceneSwitch(nextScene));
-        //StartCoroutine(Wait(2.5f));
+        StartCoroutine(Wait(2.5f));
         changingScenes = false;
     }
 
@@ -114,6 +133,13 @@ public class ChangeScene : MonoBehaviour
     {
         Debug.Log("Waiting");
         yield return new WaitForSeconds(time);
+    }
+    IEnumerator LoadInWait()
+    {
+        curtainLoadIn = false;
+        Debug.Log("Waiting");
+        yield return new WaitForSeconds(0.34f);
+        loadingIn = false;
     }
 
 }
