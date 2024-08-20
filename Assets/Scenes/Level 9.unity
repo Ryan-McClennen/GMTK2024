@@ -23380,6 +23380,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1627403846628575656, guid: b239c3f5bbfa5154684a81f4ae6bf397, type: 3}
+      propertyPath: m_Color.b
+      value: 0.7412399
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627403846628575656, guid: b239c3f5bbfa5154684a81f4ae6bf397, type: 3}
+      propertyPath: m_Color.g
+      value: 0.5877562
+      objectReference: {fileID: 0}
+    - target: {fileID: 1627403846628575656, guid: b239c3f5bbfa5154684a81f4ae6bf397, type: 3}
+      propertyPath: m_Color.r
+      value: 0.45852974
+      objectReference: {fileID: 0}
     - target: {fileID: 2301065045000410514, guid: b239c3f5bbfa5154684a81f4ae6bf397, type: 3}
       propertyPath: m_Name
       value: Global Light
