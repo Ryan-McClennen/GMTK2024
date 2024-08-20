@@ -54,7 +54,6 @@ public class ChangeScene : MonoBehaviour
 
     private void Update()
     {
-
         curtain.sizeDelta = canvasTransform.sizeDelta;
 
         startPoint = new Vector3(canvasTransform.rect.width * (-1), 0f, 0f);

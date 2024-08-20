@@ -11,6 +11,10 @@ public class PauseScreen : MonoBehaviour
     private ChangeScene sceneChanger;
     private Button pauseButton;
     [SerializeField]
+    private Button backToMenuButton;
+    [SerializeField]
+    private RectTransform backToMenuTransform;
+    [SerializeField]
     private Sprite backButtonSprite;
     [SerializeField]
     private Sprite pauseButtonSprite;
@@ -36,6 +40,7 @@ public class PauseScreen : MonoBehaviour
         restartTransform.localScale = new Vector2(buttonScale, buttonScale);
         pauseTransform.localScale = new Vector2(buttonScale / 2f, buttonScale / 2f);
         pauseTransform.localPosition = new Vector3((-Screen.width / 2) + pauseTransform.localScale.x * 30, (Screen.height / 2) - pauseTransform.localScale.y * 30, 0);
+        backToMenuButton.enabled = true;
     }
 
     // Update is called once per frame
@@ -44,6 +49,9 @@ public class PauseScreen : MonoBehaviour
         restartTransform.localScale = new Vector2(buttonScale, buttonScale);
         pauseTransform.localScale = new Vector2(buttonScale / 2f, buttonScale / 2f);
         pauseTransform.localPosition = new Vector3((-Screen.width / 2) + pauseTransform.localScale.x * 30, (Screen.height / 2) - pauseTransform.localScale.y * 30, 0);
+
+        backToMenuTransform.localScale = new Vector2(buttonScale / 1.4f, buttonScale / 1.4f);
+        backToMenuTransform.localPosition = new Vector3(0, (-Screen.height / 2) + pauseTransform.localScale.y * 55, 0);
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -98,9 +106,18 @@ public class PauseScreen : MonoBehaviour
         }
     }
 
+    public void MenuClicked()
+    {
+        backToMenuButton.enabled = false;
+        restartButton.enabled = false;
+        StartCoroutine(MenuLoad());
+
+    }
+
     public void LevelRestart()
     {
         restartButton.enabled = false;
+        backToMenuButton.enabled = false;
         restartClicked = true;
         StartCoroutine(sceneRestart());
     }
@@ -116,6 +133,24 @@ public class PauseScreen : MonoBehaviour
         sceneChanger.pause = false;
         sceneChanger.pauseMenuOpen = false;
         pauseButton.image.sprite = pauseButtonSprite;
+        //StartCoroutine(Wait(4f));
+
+    }
+
+    IEnumerator MenuLoad()
+    {
+        String currentSceneName = SceneManager.GetActiveScene().name;
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Main Menu Screen");
+
+        // Wait until the asynchronous scene fully loads
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+
+        //sceneChanger.pause = false;
+        //sceneChanger.pauseMenuOpen = false;
+        //pauseButton.image.sprite = pauseButtonSprite;
         //StartCoroutine(Wait(4f));
 
     }
