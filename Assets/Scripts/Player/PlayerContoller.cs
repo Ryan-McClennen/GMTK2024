@@ -39,8 +39,10 @@ public class PlayerContoller : MonoBehaviour
     [SerializeField]
     LayerMask spikes;
 
-    private bool isChild;
+    public PauseScreen resettor;
 
+    private bool isChild;
+    private bool died = false;
     private int MINSCREENSIZE = 10;
 
     public void Start()
@@ -51,6 +53,8 @@ public class PlayerContoller : MonoBehaviour
         vCam = GameObject.Find ("Virtual Camera").GetComponent<CinemachineVirtualCamera>();
         vCam.Follow = balloonFollow;
         vCam.m_Lens.OrthographicSize = MINSCREENSIZE;
+
+        resettor = GameObject.Find("PauseMenu").GetComponent<PauseScreen>();
     }
 
     private void Update()
@@ -103,6 +107,13 @@ public class PlayerContoller : MonoBehaviour
 
     private void Reset()
     {
-        print("Reset"); // RESET CODE HERE
+        if (!died)
+        {
+            resettor.LevelRestart();
+        }
+        died = true;
+
+        print("Reset");
+        
     }
 }
