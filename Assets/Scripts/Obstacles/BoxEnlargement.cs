@@ -32,9 +32,15 @@ public class BoxEnlargement : MonoBehaviour
     AudioClip deflating;
 
     private float massMultiplier =  0.8f;
+    Camera cam;
 
     public bool isGrowing;
     public bool isShrinking;
+
+    private void Start()
+    {
+        cam = Camera.main;
+    }
 
     private void FixedUpdate()
     {
@@ -83,6 +89,12 @@ public class BoxEnlargement : MonoBehaviour
             (isGrowing && boxScale > 9.9f)  || 
             (isShrinking && boxScale <  1.1f))
             source.Stop();
+
+        float distance = Vector3.Distance(transform.position, cam.transform.position);
+        if (distance < 30)
+            source.volume = (900 - Mathf.Pow(distance, 2)) / 900f;
+        else
+            source.volume = 0;
 
         float smallTrans = 0;
         float medTrans = 0;

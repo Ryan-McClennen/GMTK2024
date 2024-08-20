@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -9,8 +10,10 @@ public class Gate : Obstacle
     public Vector3 openPos;
     public Vector3 closedPos;
 
-    private Vector3 start;
+    [SerializeField]
+    AudioSource source;
 
+    private Vector3 start;
     private Vector3 goal;
     private int moveTime = 2;
     private float speed;
@@ -28,15 +31,20 @@ public class Gate : Obstacle
     public override void Activate()
     {
         goal = start + closedPos;
+        source.Play();
     }
 
     public override void Deactivate()
     {
         goal = start + openPos;
+        source.Play();
     }
 
     private void FixedUpdate()
     {
         transform.position = Vector3.MoveTowards(transform.position, goal, speed);
+
+        if (Mathf.Approximately((transform.position - goal).magnitude, 0))
+            source.Stop();
     }
 }
