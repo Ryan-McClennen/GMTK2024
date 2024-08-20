@@ -1,7 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class FinishSign : MonoBehaviour
 {
@@ -24,6 +28,12 @@ public class FinishSign : MonoBehaviour
     {
         if (hitbox.IsTouchingLayers(layer) && !levelDone)
         {
+            int oldMax = PlayerPrefs.GetInt("MaxLevel");
+            string num = SceneManager.GetActiveScene().name.Last().ToString();
+            int newMax = int.Parse(num) + 1;
+            PlayerPrefs.SetInt("MaxLevel", Math.Max(oldMax, newMax));
+            PlayerPrefs.Save();
+            print(newMax);
             levelDone = true;
             StartCoroutine(Wait(2f));
         }

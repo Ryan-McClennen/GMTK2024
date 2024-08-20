@@ -17,13 +17,12 @@ public class MusicSlider : MonoBehaviour
 
     void Start()
     {
-        float volume;
-        mixer.GetFloat(mixerGroup, out volume);
-        slider.value = volume;
+        slider.value = PlayerPrefs.GetFloat(mixerGroup);
     }
 
     public void SetVolume(float volume)
     {
         mixer.SetFloat(mixerGroup, volume);
+        PlayerPrefs.SetFloat(mixerGroup, volume);
     }
 }
