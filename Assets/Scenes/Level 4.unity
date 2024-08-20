@@ -32908,7 +32908,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2239336727670687200, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: windForceMultiplier
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4701486751150576179, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: ShapeModule.m_Scale.x
@@ -47560,7 +47560,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2239336727670687200, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: windForceMultiplier
-      value: 5
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 4701486751150576179, guid: 9ad338326d810c349a00042c0023bdc3, type: 3}
       propertyPath: ShapeModule.m_Scale.x
