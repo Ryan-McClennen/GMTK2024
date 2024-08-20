@@ -25,6 +25,18 @@ public class PlayerContoller : MonoBehaviour
     [SerializeField]
     private CinemachineVirtualCamera vCam;
 
+    [SerializeField]
+    Collider2D balloonCollider;
+
+    [SerializeField]
+    Collider2D childCollider;
+
+    [SerializeField]
+    Collider2D robotCollider;
+
+    [SerializeField]
+    LayerMask spikes;
+
     private bool isChild;
 
     private int MINSCREENSIZE = 10;
@@ -60,10 +72,15 @@ public class PlayerContoller : MonoBehaviour
             }
         }
 
-            float scale = balloon.transform.localScale.x;
-            balloonFollow.transform.localPosition = Vector2.down * (scale * 0.2f / 5.3f + 0.4f);
-            if (scale < 1.15f) vCam.m_Lens.OrthographicSize = MINSCREENSIZE;
-            else vCam.m_Lens.OrthographicSize = (scale - 1.15f) * 3f + MINSCREENSIZE;
+        if (balloonCollider.IsTouchingLayers(spikes) ||
+            childCollider.IsTouchingLayers(spikes) ||
+            robotCollider.IsTouchingLayers(spikes))
+            CommitDie();
+
+        float scale = balloon.transform.localScale.x;
+        balloonFollow.transform.localPosition = Vector2.down * (scale * 0.2f / 5.3f + 0.4f);
+        if (scale < 1.15f) vCam.m_Lens.OrthographicSize = MINSCREENSIZE;
+        else vCam.m_Lens.OrthographicSize = (scale - 1.15f) * 3f + MINSCREENSIZE;
     }
 
     public void CommitDie()
