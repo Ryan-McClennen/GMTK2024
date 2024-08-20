@@ -147,7 +147,7 @@ MonoBehaviour:
   isActive: 0
   openPos: {x: -3, y: 4, z: 0}
   closedPos: {x: 0, y: 4, z: 0}
-  source: {fileID: 0}
+  source: {fileID: 5673264292564649825}
 --- !u!82 &5673264292564649825
 AudioSource:
   m_ObjectHideFlags: 0
@@ -158,7 +158,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -7222704545961640439, guid: e5ccc941fce0d9b4f9b6e98f0be37895, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 23c799c09b7b2436f859102e3b57ac65, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
