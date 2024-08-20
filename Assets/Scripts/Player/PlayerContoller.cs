@@ -109,7 +109,7 @@ public class PlayerContoller : MonoBehaviour
         GameObject.Find("Background").GetComponent<AudioSource>().Stop();
         GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().Follow = null;
 
-        Invoke("Reset", 4f);
+        Invoke("Reset", 3f);
     }
 
     private void Reset()
