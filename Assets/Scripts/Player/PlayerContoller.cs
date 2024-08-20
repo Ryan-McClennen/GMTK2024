@@ -2,7 +2,9 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerContoller : MonoBehaviour
@@ -85,7 +87,22 @@ public class PlayerContoller : MonoBehaviour
 
     public void CommitDie()
     {
-        Time.timeScale = 0;
-        print(isChild ? "Child is Kil" : "Robot is kil");
+        balloonMove.RemoveControl();
+        robotMove.RemoveControl();
+
+        if (isChild)
+        {
+            balloonMove.Die();
+            robotMove.ChildDie();
+        }
+        else
+            robotMove.Die();
+
+        Invoke("Reset", 1f);
+    }
+
+    private void Reset()
+    {
+        print("Reset"); // RESET CODE HERE
     }
 }
