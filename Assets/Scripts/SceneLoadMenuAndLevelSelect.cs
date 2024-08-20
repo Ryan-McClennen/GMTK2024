@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,94 +8,22 @@ using UnityEngine.UI;
 public class SceneLoadMenuAndLevelSelect : MonoBehaviour
 {
     private string sceneName;
-    public void clicked1()
+
+    public void OnClick(string scene)
     {
-        sceneName = "Level 1";
+        sceneName = scene;
         StartCoroutine(LoadLevel(sceneName));
     }
 
-    public void clicked2()
+    public void PlayFurthestLevel()
     {
-        sceneName = "Level 2";
-        StartCoroutine(LoadLevel(sceneName));
+        int furthest = Math.Min(PlayerPrefs.GetInt("MaxLevel"), 12);
+        StartCoroutine(LoadLevel("Level " + furthest));
     }
 
-    public void clicked3()
+    public void Quit()
     {
-        sceneName = "Level 3";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clicked4()
-    {
-        sceneName = "Level 4";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clicked5()
-    {
-        sceneName = "Level 5";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clicked6()
-    {
-        sceneName = "Level 6";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clicked7()
-    {
-        sceneName = "Level 7";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clicked8()
-    {
-        sceneName = "Level 8";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clicked9()
-    {
-        sceneName = "Level 9";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clicked10()
-    {
-        sceneName = "Level 10";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clicked11()
-    {
-        sceneName = "Level 11";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clicked12()
-    {
-        sceneName = "Level 12";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clickedMain()
-    {
-        sceneName = "Main Menu Screen";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clickedLevel()
-    {
-        sceneName = "Level Select";
-        StartCoroutine(LoadLevel(sceneName));
-    }
-
-    public void clickedOptions()
-    {
-        sceneName = "Options";
-        StartCoroutine(LoadLevel(sceneName));
+        Application.Quit();
     }
 
     IEnumerator LoadLevel(string sceneName)
