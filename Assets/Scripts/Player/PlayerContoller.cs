@@ -109,11 +109,17 @@ public class PlayerContoller : MonoBehaviour
     {
         if (!died)
         {
-            resettor.LevelRestart();
+            resettor.PauseClicked();
+            StartCoroutine(Wait(5f));
+            StartCoroutine(resettor.sceneRestart());
         }
         died = true;
 
         print("Reset");
-        
+    }
+    public IEnumerator Wait(float timeAmount)
+    {
+        yield return new WaitForSeconds(timeAmount);
+
     }
 }
