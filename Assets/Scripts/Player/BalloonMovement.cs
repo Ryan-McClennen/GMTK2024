@@ -254,7 +254,7 @@ public class BalloonMovement : MonoBehaviour
     {
         canControl = false;
         rb.velocity = Vector2.zero;
-        rb.isKinematic = true;
+        rb.gravityScale = 2f;
     }
 
     public void Die()

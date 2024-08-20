@@ -41,6 +41,9 @@ public class PlayerContoller : MonoBehaviour
 
     public PauseScreen resettor;
 
+    [SerializeField]
+    AudioSource gameOver;
+
     private bool isChild;
     private bool died = false;
     private int MINSCREENSIZE = 10;
@@ -103,6 +106,11 @@ public class PlayerContoller : MonoBehaviour
             robotMove.Die();
 
         Invoke("Reset", 1f);
+        if (!gameOver.isPlaying) gameOver.Play();
+        GameObject.Find("Background").GetComponent<AudioSource>().Stop();
+        GameObject.Find("Virtual Camera").GetComponent<CinemachineVirtualCamera>().Follow = null;
+
+        Invoke("Reset", 4f);
     }
 
     private void Reset()
@@ -114,6 +122,7 @@ public class PlayerContoller : MonoBehaviour
             StartCoroutine(resettor.sceneRestart());
         }
         died = true;
+<<<<<<< HEAD
 
         print("Reset");
     }
@@ -121,6 +130,8 @@ public class PlayerContoller : MonoBehaviour
     {
         yield return new WaitForSeconds(timeAmount);
 
+=======
+>>>>>>> e5b092258eb76342a9993ca5337ffbd082c64edf
     }
 }
 //hello
