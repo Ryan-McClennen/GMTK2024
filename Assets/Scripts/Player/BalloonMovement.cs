@@ -78,6 +78,9 @@ public class BalloonMovement : MonoBehaviour
     [SerializeField]
     Transform balloonPos;
 
+    [SerializeField]
+    float topOfWorld = 148f;
+
     private bool canControl;
 
     private void Start()
@@ -93,7 +96,7 @@ public class BalloonMovement : MonoBehaviour
 
         if (!canControl) return;
 
-        if (balloonPos.position.y + 1.7f * balloonPos.localScale.x > 148f || transform.position.y - 1.25f < -17f)
+        if (balloonPos.position.y + 1.7f * balloonPos.localScale.x > topOfWorld || transform.position.y - 1.25f < -17f)
             GameObject.Find("Player").GetComponent<PlayerContoller>().CommitDie();
 
         if (!isPlayer) return;
