@@ -111,7 +111,6 @@ public class RobotMovement : MonoBehaviour
             source.clip = clips[0];
             if (beep)
             {
-                print("Here");
                 source.Play();
                 beep = false;
                 StartCoroutine(ResetBeep());

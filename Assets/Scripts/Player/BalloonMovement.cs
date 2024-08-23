@@ -103,30 +103,6 @@ public class BalloonMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow)) transform.localScale = new Vector2(1f, 1f);
         if (Input.GetKey(KeyCode.RightArrow)) transform.localScale = new Vector2(-1f, 1f);
-
-        if (balloonNumber == 0 || balloonNumber == 8) source.Stop();
-
-        bool up = Input.GetKeyDown(KeyCode.UpArrow);
-        bool continuousUp = Input.GetKey(KeyCode.UpArrow);
-        bool upReleased = Input.GetKeyUp(KeyCode.UpArrow);
-        bool down = Input.GetKeyDown(KeyCode.DownArrow);
-        bool continuousDown = Input.GetKey(KeyCode.DownArrow);
-        bool downReleased = Input.GetKeyUp(KeyCode.DownArrow);
-
-        if (continuousUp == continuousDown)
-        {
-            source.Stop();
-        }
-        else if ((up && balloonNumber != 8) || (downReleased && continuousUp))
-        {
-            source.clip = clips[1];
-            source.Play();
-        }
-        else if ((down && balloonNumber != 0) || (upReleased && continuousDown))
-        {
-            source.clip = clips[0];
-            source.Play();
-        }
     }
 
     private void FixedUpdate()
@@ -198,6 +174,42 @@ public class BalloonMovement : MonoBehaviour
         {
             balloonNumber += vertical * 0.05f;
             balloonNumber = Mathf.Clamp(balloonNumber, 0, floatinessScale.Length - 1);
+
+            bool up = Input.GetKey(KeyCode.UpArrow);
+            bool down = Input.GetKey(KeyCode.DownArrow);
+
+            if (!source.isPlaying)
+            {
+                if (up && !down && balloonNumber < 8)
+                {
+                    source.clip = clips[0];
+                    source.Play();
+                }
+                else  if (down && !up && balloonNumber > 0)
+                {
+                    source.clip = clips[1];
+                    source.Play();
+                }
+            }
+            else if (balloonNumber == 0 || balloonNumber == 8 || up == down)
+            {
+                source.Stop();
+            }
+            else if (up && source.clip != clips[0])
+            {
+                source.clip = clips[0];
+                source.Play();
+            }
+            else if (down && source.clip != clips[1])
+            {
+                source.clip = clips[1];
+                source.Play();
+            }
+        }
+        
+        if (isEnclosed && vertical != -1)
+        {
+            source.Stop();
         }
 
         if (!IsGrounded())
