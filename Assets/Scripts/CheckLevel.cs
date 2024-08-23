@@ -14,7 +14,7 @@ public class CheckLevel : MonoBehaviour
 
     void Start()
     {
-        int levelNum =  int.Parse(text.text);
+        int levelNum = int.Parse(text.text);
         if (levelNum > PlayerPrefs.GetInt("MaxLevel"))
             button.interactable = false;
     }
